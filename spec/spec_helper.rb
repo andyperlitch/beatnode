@@ -4,6 +4,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 
 require 'factory_girl'
+require 'database_cleaner'
 
 FactoryGirl.find_definitions
 
@@ -14,4 +15,16 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
