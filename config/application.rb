@@ -4,7 +4,7 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'sprockets/railtie'
 
-require Rails.root.join 'config', 'database'
+require File.expand_path('../database', __FILE__)
 
 module Beatnode
   class Application < Rails::Application

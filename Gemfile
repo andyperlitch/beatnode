@@ -34,7 +34,9 @@ group :doc do
 end
 
 group :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails',  '2.12.2'
+  gem 'factory_girl', '4.2.0'
+  gem 'faker',        '1.1.2'
 end
 
 # Use ActiveModel has_secure_password
