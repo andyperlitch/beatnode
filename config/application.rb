@@ -4,6 +4,8 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'sprockets/railtie'
 
+require Rails.root.join 'config', 'database'
+
 module Beatnode
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
