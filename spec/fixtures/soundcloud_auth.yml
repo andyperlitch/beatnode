@@ -1,0 +1,38 @@
+---
+provider: soundcloud
+uid: 1226843
+info:
+  nickname: Ricky Rice
+  name: Alex Genco
+  image: https://i1.sndcdn.com/avatars-000001391059-8c3p7k-large.jpg?c831450
+  location: San Francisco
+credentials:
+  token: 1-11862-1226843-925619e66f624773
+  expires: false
+extra:
+  raw_info:
+    id: 1226843
+    kind: user
+    permalink: rickyrice
+    username: Ricky Rice
+    uri: https://api.soundcloud.com/users/1226843
+    permalink_url: http://soundcloud.com/rickyrice
+    avatar_url: https://i1.sndcdn.com/avatars-000001391059-8c3p7k-large.jpg?c831450
+    country: United States
+    full_name: Alex Genco
+    city: San Francisco
+    online: true
+    track_count: 9
+    playlist_count: 0
+    plan: Free
+    public_favorites_count: 1
+    followers_count: 17
+    followings_count: 27
+    upload_seconds_left: 4922
+    quota:
+      unlimited_upload_quota: false
+      upload_seconds_used: 2277
+      upload_seconds_left: 4922
+    private_tracks_count: 3
+    private_playlists_count: 0
+    primary_email_confirmed: true
