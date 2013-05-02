@@ -20,6 +20,6 @@ FactoryGirl.define do
   end
 
   sequence :provider_id do |i|
-    (hash.abs / i).to_s[0..5].to_i
+    (hash.abs / i).to_s[0..5].to_s
   end
 end

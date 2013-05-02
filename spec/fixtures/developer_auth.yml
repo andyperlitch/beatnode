@@ -1,0 +1,8 @@
+--- !ruby/hash:OmniAuth::AuthHash
+provider: developer
+uid: alex@test.com
+info: !ruby/hash:OmniAuth::AuthHash::InfoHash
+  name: alex
+  email: alex@test.com
+credentials: !ruby/hash:Hashie::Mash {}
+extra: !ruby/hash:Hashie::Mash {}

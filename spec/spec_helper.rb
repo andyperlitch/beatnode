@@ -15,6 +15,7 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.include FactoryGirl::Syntax::Methods
+  config.include SessionsHelper
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

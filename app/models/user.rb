@@ -1,18 +1,10 @@
 class User < Sequel::Model
-  def self.find_or_create_from_soundcloud_auth(auth_hash)
-    unless auth_hash['provider'] == 'soundcloud'
-      raise ArgumentError, 'Not a Soundcloud auth hash'
-    end
+  def self.find_or_create_from_auth(auth_hash)
+    auth = Auth.new(auth_hash)
+    prov, id = auth.provider, auth.provider_id
 
-    begin
-      provider_id = auth_hash.fetch('uid').to_i
-      username    = auth_hash.fetch('info').fetch('nickname')
-
-      find_or_create(provider_id: provider_id) do |u|
-        u.username = username
-      end
-    rescue KeyError => e
-      raise ArgumentError, "Invalid auth hash: #{e.message}"
+    find_or_create(provider: prov, provider_id: id) do |u|
+      u.username = auth.username
     end
   end
 end

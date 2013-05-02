@@ -4,6 +4,8 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'sprockets/railtie'
 
+Bundler.require(:default, Rails.env)
+
 require File.expand_path('../database', __FILE__)
 
 module Beatnode

@@ -1,0 +1,8 @@
+<h3>Sign in with:</h3>
+<ul>
+  <li><%= link_to 'Soundcloud', '/auth/soundcloud' %></li>
+
+  <%- unless Rails.env.production? %>
+    <li><%= link_to 'Developer', '/auth/developer' %></li>
+  <%- end %>
+</ul>
