@@ -16,7 +16,9 @@ end
 DB.create_table :nodes do
   primary_key :node_id
 
-  String  :name
+  foreign_key :uploader_id, :users, index: true
+
+  String :title
 end
 
 DB.create_table :connections do

@@ -39,4 +39,9 @@ describe User do
   it 'has a provider_id' do
     expect(subject.provider_id).to eq(provider_id)
   end
+
+  it 'has uploaded nodes' do
+    node = create(:node, uploader: subject)
+    expect(subject.uploaded_nodes).to include(node)
+  end
 end

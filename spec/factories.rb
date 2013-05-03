@@ -7,7 +7,8 @@ FactoryGirl.define do
   end
 
   factory :node do
-    name { Faker::Name.name }
+    uploader factory: :user
+    title { Faker::Name.name }
   end
 
   factory :connection do
