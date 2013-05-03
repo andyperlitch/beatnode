@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  include SessionsHelper
+  skip_before_filter :require_signed_in, only: [:new, :create]
 
   def new
   end
@@ -7,12 +7,17 @@ class SessionsController < ApplicationController
   def create
     user = User.find_or_create_from_auth(auth_hash)
     sign_in!(user)
-    head 200
+
+    redirect_to referrer || root_path
   end
 
   private
 
   def auth_hash
     request.env['omniauth.auth']
+  end
+
+  def referrer
+    request.env['HTTP_REFERER']
   end
 end

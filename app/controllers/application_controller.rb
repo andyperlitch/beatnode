@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   # NOTE: not needed for omniauth authentication:
   #       https://github.com/intridea/omniauth/issues/237
   #protect_from_forgery with: :exception
+
+  include SessionsHelper
+
+  before_filter :require_signed_in
 end
