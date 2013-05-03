@@ -10,4 +10,9 @@ class Node < Sequel::Model
     left_key:   :parent_id,
     right_key:  :child_id,
     join_table: :connections
+
+  def validate
+    super
+    validates_presence :title
+  end
 end

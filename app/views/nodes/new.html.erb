@@ -1,1 +1,16 @@
 <h1>New Node</h1>
+
+<%= form_for :node, url: {action: :create} do |f| %>
+  <%= render partial: 'shared/form_errors', locals: {model: @node} %>
+
+  <%= f.hidden_field :uploader_id %>
+
+  <div class=field>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class=submit>
+    <%= f.submit %>
+  </div>
+<% end %>
