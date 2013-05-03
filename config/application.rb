@@ -4,7 +4,8 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'sprockets/railtie'
 
-Bundler.require(:default, Rails.env)
+require 'jquery-rails'
+require 'turbolinks'
 
 require File.expand_path('../database', __FILE__)
 
