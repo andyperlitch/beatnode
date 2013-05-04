@@ -11,17 +11,17 @@ describe Node do
     expect(subject.title).to eq('A node')
   end
 
-  it 'has parents' do
-    parent     = create(:node, title: 'Parent')
-    connection = create(:connection, parent: parent, child: subject)
+  it 'has sources' do
+    source   = create(:node, title: 'Source')
+    sampling = create(:sampling, source: source, result: subject)
 
-    expect(subject.parents).to include(parent)
+    expect(subject.sources).to include(source)
   end
 
-  it 'has children' do
-    child      = create(:node, title: 'Child')
-    connection = create(:connection, parent: subject, child: child)
+  it 'has usages' do
+    usage    = create(:node, title: 'Usage')
+    sampling = create(:sampling, source: subject, result: usage)
 
-    expect(subject.children).to include(child)
+    expect(subject.usages).to include(usage)
   end
 end

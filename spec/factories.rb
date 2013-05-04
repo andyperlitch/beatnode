@@ -11,9 +11,9 @@ FactoryGirl.define do
     title { Faker::Name.name }
   end
 
-  factory :connection do
-    parent factory: :node
-    child  factory: :node
+  factory :sampling do
+    source factory: :node
+    result factory: :node
   end
 
   sequence :username do |i|

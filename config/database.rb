@@ -21,11 +21,9 @@ DB.create_table :nodes do
   String :title
 end
 
-DB.create_table :connections do
-  primary_key :connection_id
+DB.create_table :samplings do
+  foreign_key :source_id, :nodes, index: true
+  foreign_key :result_id, :nodes, index: true
 
-  foreign_key :parent_id, :nodes, index: true
-  foreign_key :child_id,  :nodes, index: true
-
-  index [:parent_id, :child_id], unique: true
+  index [:source_id, :result_id], unique: true
 end

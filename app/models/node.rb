@@ -1,15 +1,15 @@
 class Node < Sequel::Model
   many_to_one :uploader, class: :User
 
-  many_to_many :parents, class: :Node,
-    left_key:   :child_id,
-    right_key:  :parent_id,
-    join_table: :connections
+  many_to_many :sources, class: :Node,
+    left_key:   :result_id,
+    right_key:  :source_id,
+    join_table: :samplings
 
-  many_to_many :children, class: :Node,
-    left_key:   :parent_id,
-    right_key:  :child_id,
-    join_table: :connections
+  many_to_many :usages, class: :Node,
+    left_key:   :source_id,
+    right_key:  :result_id,
+    join_table: :samplings
 
   def validate
     super
