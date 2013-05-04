@@ -6,4 +6,5 @@ Beatnode::Application.routes.draw do
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 
   resources :nodes, only: [:new, :create]
+  resources :users, only: [:show]
 end
