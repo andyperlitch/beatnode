@@ -2,5 +2,5 @@
 
 <%= link_to 'Upload', new_node_path %>
 
-<% locals = {nodes: @uploaded_nodes, empty_msg: 'No uploaded nodes.'} %>
-<%= render partial: 'nodes/list', locals: locals %>
+<%= render partial: 'nodes/list',
+  locals: {nodes: @uploaded_nodes, empty_msg: 'No uploaded nodes.'} %>

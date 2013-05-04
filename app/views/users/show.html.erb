@@ -1,4 +1,4 @@
 <h1><%= @user.username %></h1>
 
-<% locals = {nodes: @uploaded_nodes, empty_msg: 'No uploaded nodes.'} %>
-<%= render partial: 'nodes/list', locals: locals %>
+<%= render partial: 'nodes/list',
+  locals: {nodes: @uploaded_nodes, empty_msg: 'No uploaded nodes.'} %>
