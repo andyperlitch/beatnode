@@ -1,0 +1,9 @@
+<% if nodes.empty? %>
+  <p>No uploaded nodes.</p>
+<% else %>
+  <% nodes.each do |node| %>
+    <div class=node>
+      <h2><%= node.title %></h2>
+    </div>
+  <% end %>
+<% end %>

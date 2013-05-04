@@ -3,6 +3,10 @@ module SessionsHelper
     session[:user_id] = user.user_id
   end
 
+  def sign_out!
+    session[:user_id] = nil
+  end
+
   def signed_in?
     !!viewer
   end
