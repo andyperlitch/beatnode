@@ -1,0 +1,7 @@
+<h1><%= @node.title %></h1>
+
+<div id=sources>
+  <h2>Sources</h2>
+  <% locals = {nodes: @sources, empty_msg: 'No sources.'} %>
+  <%= render partial: 'nodes/list', locals: locals %>
+</div>

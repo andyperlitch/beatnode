@@ -14,4 +14,9 @@ class NodesController < ApplicationController
       render :new
     end
   end
+
+  def show
+    @node    = Node[params[:id]]
+    @sources = @node.sources
+  end
 end

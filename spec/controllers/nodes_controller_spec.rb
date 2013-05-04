@@ -37,4 +37,15 @@ describe NodesController, :signed_in do
       assert_template :new
     end
   end
+
+  describe '#show' do
+    let(:node)      { create(:node) }
+    let(:source)    { create(:node) }
+    let!(:sampling) { create(:sampling, source: source, result: node) }
+
+    it 'assigns @sources' do
+      get :show, id: node.node_id
+      expect(assigns[:sources]).to include(source)
+    end
+  end
 end

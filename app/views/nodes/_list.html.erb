@@ -1,0 +1,11 @@
+<% if nodes.empty? %>
+  <h3><%= empty_msg ||= 'No nodes.' %></h3>
+<% else %>
+  <% nodes.each do |node| %>
+    <div class=node>
+      <h2 class=title>
+        <%= link_to node.title, node_path(id: node.node_id) %>
+      </h2>
+    </div>
+  <% end %>
+<% end %>
