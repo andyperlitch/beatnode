@@ -9,4 +9,10 @@ class User < Sequel::Model
       u.username = auth.username
     end
   end
+
+  def build_node(params)
+    Node.new(params).tap do |node|
+      node.uploader = self
+    end
+  end
 end

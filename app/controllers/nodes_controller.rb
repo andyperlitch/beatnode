@@ -4,7 +4,7 @@ class NodesController < ApplicationController
   end
 
   def create
-    @node = Node.new(params[:node])
+    @node = viewer.build_node(params[:node])
 
     if @node.valid?
       @node.save

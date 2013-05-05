@@ -14,8 +14,7 @@ describe NodesController, :signed_in do
   end
 
   describe '#create' do
-    let(:user)   { create(:user) }
-    let(:params) { {node: {title: 'A title', uploader_id: user.user_id}} }
+    let(:params) { {node: {title: 'A title'}} }
 
     it 'creates a node' do
       expect do
@@ -26,6 +25,12 @@ describe NodesController, :signed_in do
     it 'sets attributes' do
       post :create, params
       expect(Node.last.title).to eq('A title')
+    end
+
+    it 'protects against mass assignment on uploader_id' do
+      other_user = create(:user)
+      post :create, params.merge(uploader_id: other_user.user_id)
+      expect(Node.last.uploader).to eq(viewer)
     end
 
     it 'redirects to the home page' do
