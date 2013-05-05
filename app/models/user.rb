@@ -10,7 +10,7 @@ class User < Sequel::Model
     end
   end
 
-  def build_node(params)
+  def build_node(params={})
     Node.new(params).tap do |node|
       node.uploader = self
     end

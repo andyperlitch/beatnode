@@ -8,4 +8,6 @@ Beatnode::Application.routes.draw do
   resources :users, only: [:show]
 
   resources :nodes, only: [:new, :create, :show]
+
+  resources :samplings, only: [:create]
 end

@@ -15,4 +15,8 @@ class Node < Sequel::Model
     super
     validates_presence :title
   end
+
+  def samples!(node)
+    Sampling.create(source: node, result: self)
+  end
 end
