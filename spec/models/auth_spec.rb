@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Auth do
-  let(:sc_auth)  { Auth.new(Fixture(:soundcloud_auth)) }
-  let(:dev_auth) { Auth.new(Fixture(:developer_auth)) }
+  let(:sc_auth)  { Auth.from_hash(Fixture(:soundcloud_auth)) }
+  let(:dev_auth) { Auth.from_hash(Fixture(:developer_auth)) }
 
   it 'delegates to the proper subclass' do
     expect(sc_auth).to  be_a(Auth::Soundcloud)

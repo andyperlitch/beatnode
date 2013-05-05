@@ -1,5 +1,5 @@
 module Auth
-  def self.new(auth_object={})
+  def self.from_hash(auth_object={})
     case auth_object[:provider] || auth_object['provider']
     when 'soundcloud'
       Soundcloud.new(auth_object)
