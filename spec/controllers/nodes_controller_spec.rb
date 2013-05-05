@@ -14,7 +14,8 @@ describe NodesController, :signed_in do
   end
 
   describe '#create' do
-    let(:params) { {node: {title: 'A title'}} }
+    let(:user)   { create(:user) }
+    let(:params) { {node: {title: 'A title', uploader_id: user.user_id}} }
 
     it 'creates a node' do
       expect do

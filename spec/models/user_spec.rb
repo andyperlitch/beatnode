@@ -1,12 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  let(:uname)       { generate(:username) }
-  let(:provider_id) { generate(:provider_id) }
-
-  subject do
-    create(:user, :username => uname, :provider_id => provider_id)
-  end
+  subject { create(:user) }
 
   describe '.find_or_create_from_auth' do
     let(:auth_hash) do
@@ -33,11 +28,11 @@ describe User do
   end
 
   it 'has a username' do
-    expect(subject.username).to eq(uname)
+    expect(subject.username).to be_present
   end
 
   it 'has a provider_id' do
-    expect(subject.provider_id).to eq(provider_id)
+    expect(subject.provider_id).to be_present
   end
 
   it 'has uploaded nodes' do

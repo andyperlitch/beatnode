@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :user do
     username    { generate :username }
     provider_id { generate :provider_id }
+    provider 'soundcloud'
   end
 
   factory :node do
@@ -21,6 +22,6 @@ FactoryGirl.define do
   end
 
   sequence :provider_id do |i|
-    (hash.abs / i).to_s[0..5].to_s
+    Faker::Address.zip + i.to_s
   end
 end
