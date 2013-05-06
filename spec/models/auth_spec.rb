@@ -9,9 +9,9 @@ describe Auth do
     expect(dev_auth).to be_a(Auth::Developer)
   end
 
-  it 'returns the provider' do
-    expect(sc_auth.provider).to  eq('soundcloud')
-    expect(dev_auth.provider).to eq('developer')
+  it 'returns the provider_name' do
+    expect(sc_auth.provider_name).to  eq('soundcloud')
+    expect(dev_auth.provider_name).to eq('developer')
   end
 
   it 'returns the provider_id' do

@@ -6,11 +6,11 @@ DB = Sequel.sqlite
 DB.create_table :users do
   primary_key :user_id
 
-  String :provider_id, null: false
-  String :provider,    null: false
-  String :username,    null: false
+  String :provider_id,   null: false
+  String :provider_name, null: false
+  String :username,      null: false
 
-  index [:provider_id, :provider], unique: true
+  index [:provider_id, :provider_name]
 end
 
 DB.create_table :nodes do

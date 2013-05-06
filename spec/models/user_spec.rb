@@ -1,7 +1,19 @@
 require 'spec_helper'
 
 describe User do
-  subject { create(:user) }
+  let(:username)      { generate(:username) }
+  let(:provider_id)   { generate(:provider_id) }
+  let(:provider_name) { 'soundcloud' }
+
+  subject do
+    create(:user, username: username,
+                  provider_id: provider_id,
+                  provider_name: provider_name)
+  end
+
+  its(:username)      { should eq(username) }
+  its(:provider_id)   { should eq(provider_id) }
+  its(:provider_name) { should eq(provider_name) }
 
   describe '.find_or_create_from_auth' do
     let(:auth_hash) do
@@ -25,14 +37,6 @@ describe User do
 
       expect(User.find_or_create_from_auth(auth_hash)).to eq(user)
     end
-  end
-
-  it 'has a username' do
-    expect(subject.username).to be_present
-  end
-
-  it 'has a provider_id' do
-    expect(subject.provider_id).to be_present
   end
 
   it 'has uploaded nodes' do

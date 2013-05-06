@@ -6,7 +6,7 @@ FactoryGirl.define do
   factory :user do
     username    { generate :username }
     provider_id { generate :provider_id }
-    provider 'soundcloud'
+    provider_name 'soundcloud'
   end
 
   factory :node do

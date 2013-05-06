@@ -15,7 +15,7 @@ module Auth
       super(object.with_indifferent_access)
     end
 
-    def provider
+    def provider_name
       auth_object.fetch(:provider)
     end
   end
