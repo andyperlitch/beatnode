@@ -1,6 +1,8 @@
 require 'faker'
 
 FactoryGirl.define do
+  to_create { |model| model.save }
+
   factory :user do
     username    { generate :username }
     provider_id { generate :provider_id }
