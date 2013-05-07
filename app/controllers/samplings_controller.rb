@@ -1,9 +1,13 @@
 class SamplingsController < ApplicationController
   def create
-    source = Node[params[:sampling][:source_id]]
     result = Node[params[:sampling][:result_id]]
 
-    source.samples!(result)
-    redirect_to :back
+    if result.uploader == viewer
+      source = Node[params[:sampling][:source_id]]
+      Sampling.create_between(source, result)
+      redirect_to :back
+    else
+      head 403
+    end
   end
 end

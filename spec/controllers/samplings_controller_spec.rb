@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SamplingsController, :signed_in do
   let(:source) { create(:node) }
-  let(:result) { create(:node) }
+  let(:result) { create(:node, uploader: viewer) }
 
   describe '#create' do
     let(:params) do
@@ -19,6 +19,17 @@ describe SamplingsController, :signed_in do
       expect do
         post :create, params
       end.to change(Sampling, :count).by(1)
+    end
+
+    it 'prevents mass assignment of a not-owned result_id' do
+      other = create(:node)
+      params[:sampling].merge!(result_id: other.id)
+
+      expect do
+        post :create, params
+      end.to_not change(Sampling, :count)
+
+      expect(response.status).to be(403)
     end
 
     it 'redirects back' do
