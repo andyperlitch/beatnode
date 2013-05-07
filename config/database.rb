@@ -4,7 +4,7 @@ require 'sequel'
 DB = Sequel.sqlite
 
 DB.create_table :users do
-  primary_key :user_id
+  primary_key :id
 
   String :provider_id,   null: false
   String :provider_name, null: false
@@ -14,7 +14,7 @@ DB.create_table :users do
 end
 
 DB.create_table :nodes do
-  primary_key :node_id
+  primary_key :id
 
   foreign_key :uploader_id, :users, index: true, null: false
 

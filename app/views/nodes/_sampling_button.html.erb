@@ -1,9 +1,9 @@
 <div class=sampling>
   <%= form_for :sampling, url: samplings_path do |f| %>
-    <%= f.hidden_field :source_id, value: source.node_id %>
+    <%= f.hidden_field :source_id, value: source.id %>
 
     Sampled in:
-    <%= f.collection_select :result_id, possible_results, :node_id, :title %>
+    <%= f.collection_select :result_id, possible_results, :id, :title %>
 
     <%= f.submit 'Submit' %>
   <% end %>

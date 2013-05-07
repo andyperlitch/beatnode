@@ -29,7 +29,7 @@ describe NodesController, :signed_in do
 
     it 'protects against mass assignment on uploader_id' do
       other_user = create(:user)
-      post :create, params.merge(uploader_id: other_user.user_id)
+      post :create, params.merge(uploader_id: other_user.id)
       expect(Node.last.uploader).to eq(viewer)
     end
 
@@ -50,7 +50,7 @@ describe NodesController, :signed_in do
     let!(:sampling) { create(:sampling, source: source, result: node) }
 
     it 'assigns @sources' do
-      get :show, id: node.node_id
+      get :show, id: node.id
       expect(assigns[:sources]).to include(source)
     end
   end

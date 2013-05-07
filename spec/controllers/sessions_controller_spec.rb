@@ -20,7 +20,7 @@ describe SessionsController do
 
     it 'signs in the user' do
       post :create, provider: 'soundcloud'
-      expect(session[:user_id]).to be(user.user_id)
+      expect(session[:user_id]).to be(user.id)
     end
 
     it 'sets viewer' do

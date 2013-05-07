@@ -6,7 +6,7 @@ describe SamplingsController, :signed_in do
 
   describe '#create' do
     let(:params) do
-      {sampling: {source_id: source.node_id, result_id: result.node_id}}
+      {sampling: {source_id: source.id, result_id: result.id}}
     end
 
     let(:back) { root_path }

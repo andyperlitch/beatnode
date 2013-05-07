@@ -6,18 +6,18 @@ describe UsersController, :signed_in do
 
   describe '#show' do
     it 'is successful' do
-      get :show, id: user.user_id
+      get :show, id: user.id
       expect(response).to be_success
     end
 
     it 'assigns @user' do
-      get :show, id: user.user_id
+      get :show, id: user.id
       expect(assigns[:user]).to eq(user)
     end
 
     it 'assigns @uploaded_nodes' do
       node
-      get :show, id: user.user_id
+      get :show, id: user.id
       expect(assigns[:uploaded_nodes]).to include(node)
     end
 
