@@ -20,19 +20,9 @@ module Auth
     end
   end
 
-  class Developer < Base
-    def provider_id
-      auth_object.fetch(:uid).to_s
-    end
-
-    def username
-      auth_object.fetch(:info).with_indifferent_access.fetch(:name)
-    end
-  end
-
   class Soundcloud < Base
     def provider_id
-      auth_object.fetch(:uid).to_s
+      auth_object.fetch(:uid)
     end
 
     def username

@@ -29,7 +29,7 @@ describe User do
     it 'sets the correct attributes' do
       user = User.find_or_create_from_auth(auth_hash)
       expect(user.username).to    eq(auth_hash['info']['nickname'])
-      expect(user.provider_id).to eq(auth_hash['uid'].to_s)
+      expect(user.provider_id).to eq(auth_hash['uid'])
     end
 
     it 'finds an existing user' do

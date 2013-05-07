@@ -1,26 +1,21 @@
 require 'spec_helper'
 
 describe Auth do
-  let(:sc_auth)  { Auth.from_hash(Fixture(:soundcloud_auth)) }
-  let(:dev_auth) { Auth.from_hash(Fixture(:developer_auth)) }
+  subject { Auth.from_hash(Fixture(:soundcloud_auth)) }
 
   it 'delegates to the proper subclass' do
-    expect(sc_auth).to  be_a(Auth::Soundcloud)
-    expect(dev_auth).to be_a(Auth::Developer)
+    expect(subject).to be_a(Auth::Soundcloud)
   end
 
   it 'returns the provider_name' do
-    expect(sc_auth.provider_name).to  eq('soundcloud')
-    expect(dev_auth.provider_name).to eq('developer')
+    expect(subject.provider_name).to eq('soundcloud')
   end
 
   it 'returns the provider_id' do
-    expect(sc_auth.provider_id).to  eq('1226843')
-    expect(dev_auth.provider_id).to eq('alex@test.com')
+    expect(subject.provider_id).to be(1226843)
   end
 
   it 'returns the username' do
-    expect(sc_auth.username).to  eq('Ricky Rice')
-    expect(dev_auth.username).to eq('alex')
+    expect(subject.username).to eq('Ricky Rice')
   end
 end

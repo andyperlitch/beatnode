@@ -28,7 +28,7 @@ FactoryGirl.define do
     Faker::Internet.user_name + i.to_s
   end
 
-  sequence :provider_id do |i|
-    Faker::Address.zip + i.to_s
+  sequence :provider_id do
+    Faker::Address.zip.to_i
   end
 end
