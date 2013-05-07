@@ -38,25 +38,4 @@ describe User do
       expect(User.find_or_create_from_auth(auth_hash)).to eq(user)
     end
   end
-
-  it 'has uploaded nodes' do
-    node = create(:node, uploader: subject)
-    expect(subject.uploaded_nodes).to include(node)
-  end
-
-  describe 'collaboration' do
-    it 'creates followers' do
-      follower = create(:user)
-      collab   = create(:collaboration, source: follower, subject: subject)
-
-      expect(subject.followers).to include(follower)
-    end
-
-    it 'creates followings' do
-      followed = create(:user)
-      collab   = create(:collaboration, source: subject, subject: followed)
-
-      expect(subject.following).to include(followed)
-    end
-  end
 end
