@@ -19,6 +19,11 @@ FactoryGirl.define do
     result factory: :node
   end
 
+  factory :collaboration do
+    source  factory: :user
+    subject factory: :user
+  end
+
   sequence :username do |i|
     Faker::Internet.user_name + i.to_s
   end

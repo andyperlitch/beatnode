@@ -27,3 +27,10 @@ DB.create_table :samplings do
 
   index [:source_id, :result_id], unique: true
 end
+
+DB.create_table :collaborations do
+  foreign_key :source_id,  :users, index: true, null: false
+  foreign_key :subject_id, :users, index: true, null: false
+
+  index [:source_id, :subject_id], unique: true
+end
