@@ -2,10 +2,9 @@
   <%= form_for :sampling, url: samplings_path do |f| %>
     <%= f.hidden_field :source_id, value: source.node_id %>
 
-    <div class=field>
-      <%= f.collection_select :result_id, possible_results, :node_id, :title %>
-    </div>
+    Sampled in:
+    <%= f.collection_select :result_id, possible_results, :node_id, :title %>
 
-    <%= f.submit 'Sample it' %>
+    <%= f.submit 'Submit' %>
   <% end %>
 </div>
