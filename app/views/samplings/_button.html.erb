@@ -1,0 +1,10 @@
+<div class=sampling>
+  <%= form_for :sampling, url: samplings_path do |f| %>
+    <%= f.hidden_field :result_id, value: node.id %>
+
+    Add sample:
+    <%= f.collection_select :source_id, crate, :id, :title %>
+
+    <%= f.submit 'Submit' %>
+  <% end %>
+</div>

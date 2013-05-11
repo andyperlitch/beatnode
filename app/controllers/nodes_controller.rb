@@ -22,5 +22,6 @@ class NodesController < ApplicationController
   def show
     @node    = Node[params[:id]]
     @sources = @node.sources
+    @crate   = viewer.crate
   end
 end
