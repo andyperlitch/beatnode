@@ -40,24 +40,12 @@ describe User do
   end
 
   describe '#crate' do
-    it 'pulls from cratings' do
-      crated = create(:node)
-      create(:crating, owner: subject, node: crated)
-      expect(subject.crate).to include(crated)
-    end
-  end
-
-  describe '#has_in_crate?' do
-    it 'returns false' do
-      node = create(:node)
-      expect(subject.has_in_crate?(node)).to be_false
+    it 'returns a Crate object' do
+      expect(subject.crate).to be_a(Crate)
     end
 
-    it 'returns false' do
-      crating = create(:crating, owner: subject)
-      node    = crating.node
-
-      expect(subject.has_in_crate?(node)).to be_true
+    it 'belongs to the user' do
+      expect(subject.crate.user).to be(subject)
     end
   end
 end

@@ -9,7 +9,7 @@ class NodesController < ApplicationController
     if @node.valid?
       DB.transaction do
         @node.save
-        viewer.add_to_crate(@node)
+        viewer.crate.add(@node)
       end
 
       flash[:success] = 'Success!'
