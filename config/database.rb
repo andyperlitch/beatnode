@@ -6,9 +6,11 @@ DB = Sequel.sqlite
 DB.create_table :users do
   primary_key :id
 
-  String  :username,      null: false
-  String  :provider_name, null: false
-  Integer :provider_id,   null: false
+  String   :username,      null: false
+  String   :provider_name, null: false
+  Integer  :provider_id,   null: false
+  DateTime :created_at,    null: false, index: true
+  DateTime :updated_at
 
   index [:provider_id, :provider_name]
 end
@@ -18,7 +20,9 @@ DB.create_table :nodes do
 
   foreign_key :uploader_id, :users, index: true, null: false
 
-  String :title, null: false
+  String   :title,      null: false
+  DateTime :created_at, null: false, index: true
+  DateTime :updated_at
 end
 
 DB.create_table :samplings do

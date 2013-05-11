@@ -25,4 +25,8 @@ class User < Sequel::Model
       node.uploader = self
     end
   end
+
+  def recent_uploads
+    uploaded_nodes_dataset.recent
+  end
 end

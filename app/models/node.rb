@@ -11,6 +11,10 @@ class Node < Sequel::Model
     right_key:  :result_id,
     join_table: :samplings
 
+  def_dataset_method :recent do
+    order(:created_at.desc)
+  end
+
   def validate
     super
     validates_presence :title
