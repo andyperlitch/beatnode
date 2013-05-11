@@ -26,15 +26,22 @@ DB.create_table :nodes do
 end
 
 DB.create_table :samplings do
-  foreign_key :source_id, :nodes, index: true, null: false
-  foreign_key :result_id, :nodes, index: true, null: false
+  foreign_key :source_id, :nodes, null: false
+  foreign_key :result_id, :nodes, null: false
 
   index [:source_id, :result_id], unique: true
 end
 
 DB.create_table :collaborations do
-  foreign_key :source_id,  :users, index: true, null: false
-  foreign_key :subject_id, :users, index: true, null: false
+  foreign_key :source_id,  :users, null: false
+  foreign_key :subject_id, :users, null: false
 
   index [:source_id, :subject_id], unique: true
+end
+
+DB.create_table :cratings do
+  foreign_key :owner_id, :users, null: false
+  foreign_key :node_id,  :nodes, null: false
+
+  index [:owner_id, :node_id], unique: true
 end

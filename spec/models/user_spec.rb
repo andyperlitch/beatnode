@@ -38,4 +38,12 @@ describe User do
       expect(User.find_or_create_from_auth(auth_hash)).to eq(user)
     end
   end
+
+  describe '#crate' do
+    it 'pulls from cratings' do
+      crated = create(:node)
+      create(:crating, owner: subject, node: crated)
+      expect(subject.crate).to include(crated)
+    end
+  end
 end

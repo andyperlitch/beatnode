@@ -11,6 +11,11 @@ class User < Sequel::Model
     right_key:  :subject_id,
     join_table: :collaborations
 
+  many_to_many :crate, class: :Node,
+    left_key:   :owner_id,
+    right_key:  :node_id,
+    join_table: :cratings
+
   def self.find_or_create_from_auth(auth_hash)
     auth = Auth.from_hash(auth_hash)
     prov, id = auth.provider_name, auth.provider_id

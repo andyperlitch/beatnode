@@ -24,6 +24,11 @@ FactoryGirl.define do
     subject factory: :user
   end
 
+  factory :crating do
+    owner factory: :user
+    node
+  end
+
   sequence :username do |i|
     Faker::Internet.user_name + i.to_s
   end
