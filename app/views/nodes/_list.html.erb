@@ -7,8 +7,5 @@
         <%= link_to node.title, node_path(id: node.id) %>
       </h2>
     </div>
-
-    <%= render partial: 'nodes/sampling_button',
-      locals: {source: node, possible_results: viewer.uploaded_nodes} %>
   <% end %>
 <% end %>
