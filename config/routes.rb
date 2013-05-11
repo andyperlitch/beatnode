@@ -8,4 +8,5 @@ Beatnode::Application.routes.draw do
   resources :nodes,          only: [:new, :create, :show]
   resources :samplings,      only: [:create]
   resources :collaborations, only: [:create]
+  resources :cratings,       only: [:create]
 end

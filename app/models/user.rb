@@ -31,6 +31,10 @@ class User < Sequel::Model
     end
   end
 
+  def add_to_crate(node)
+    Crating.create(owner: self, node: node)
+  end
+
   def recent_uploads
     uploaded_nodes_dataset.recent
   end
