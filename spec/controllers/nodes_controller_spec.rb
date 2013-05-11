@@ -27,6 +27,11 @@ describe NodesController, :signed_in do
       expect(Node.last.title).to eq('A title')
     end
 
+    it 'adds the uploaded node to the users crate' do
+      post :create, params
+      expect(Node.last).to be_in_user_crate(viewer)
+    end
+
     it 'protects against mass assignment on uploader_id' do
       other_user = create(:user)
       post :create, params.merge(uploader_id: other_user.id)

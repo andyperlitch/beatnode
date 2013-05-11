@@ -19,4 +19,8 @@ class Node < Sequel::Model
     super
     validates_presence :title
   end
+
+  def in_user_crate?(user)
+    !user.crate_dataset.where(node_id: self.id).empty?
+  end
 end

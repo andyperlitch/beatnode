@@ -7,7 +7,11 @@ class NodesController < ApplicationController
     @node = viewer.build_node(params[:node])
 
     if @node.valid?
-      @node.save
+      DB.transaction do
+        @node.save
+        viewer.add_to_crate(@node)
+      end
+
       flash[:success] = 'Success!'
       redirect_to uploads_path
     else
