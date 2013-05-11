@@ -11,6 +11,11 @@ class SessionsController < ApplicationController
     redirect_to referrer || root_path
   end
 
+  def destroy
+    sign_out!
+    redirect_to sign_in_path
+  end
+
   private
 
   def auth_hash

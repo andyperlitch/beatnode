@@ -3,8 +3,9 @@ Beatnode::Application.routes.draw do
   get '/crate',   to: 'pages#crate'
   get '/uploads', to: 'pages#uploads'
 
-  get   '/sign_in',                 to: 'sessions#new'
-  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+  get    '/sign_in',                 to: 'sessions#new'
+  delete '/sign_out',                to: 'sessions#destroy'
+  match  '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 
   resources :users,          only: [:show]
   resources :nodes,          only: [:new, :create, :show]

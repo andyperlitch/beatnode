@@ -40,4 +40,17 @@ describe SessionsController do
       response.should redirect_to('/a/path')
     end
   end
+
+  describe '#destroy', :signed_in do
+    it 'signs out the user' do
+      expect do
+        delete :destroy
+      end.to change { session[:user_id] }.from(viewer.id).to(nil)
+    end
+
+    it 'redirects to the sign_in page' do
+      delete :destroy
+      expect(response).to redirect_to(sign_in_path)
+    end
+  end
 end
