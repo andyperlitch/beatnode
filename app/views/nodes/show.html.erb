@@ -1,6 +1,8 @@
 <div class=node>
   <h1><%= @node.title %></h1>
 
+  <%= render partial: 'cratings/button', locals: {node: @node} %>
+
   <div id=sources>
     <h2>Sources</h2>
     <%= render partial: 'nodes/list',

@@ -7,9 +7,7 @@
         <%= link_to node.title, node_path(id: node.id) %>
       </h2>
 
-      <% unless node.in_user_crate?(viewer) %>
-        <%= render partial: 'cratings/create_button', locals: {node: node} %>
-      <% end %>
+      <%= render partial: 'cratings/button', locals: {node: node} %>
     </div>
   <% end %>
 <% end %>
