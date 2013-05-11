@@ -1,5 +1,6 @@
 Beatnode::Application.routes.draw do
-  root to: 'pages#home'
+  root          to: 'pages#home'
+  get '/crate', to: 'pages#crate'
 
   get   '/sign_in',                 to: 'sessions#new'
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]

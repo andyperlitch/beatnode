@@ -14,4 +14,12 @@ describe PagesController, :signed_in do
       expect(assigns[:uploaded_nodes]).to include(node)
     end
   end
+
+  describe '#crate' do
+    it 'assigns @crate' do
+      node = create(:crating, owner: viewer).node
+      get :crate
+      expect(assigns[:crate]).to include(node)
+    end
+  end
 end
