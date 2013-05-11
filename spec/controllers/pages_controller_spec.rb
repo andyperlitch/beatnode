@@ -8,11 +8,6 @@ describe PagesController, :signed_in do
   end
 
   describe '#home' do
-    it 'assigns @viewer_nodes' do
-      node = create(:node, uploader: viewer)
-      get :home
-      expect(assigns[:uploaded_nodes]).to include(node)
-    end
   end
 
   describe '#crate' do
@@ -20,6 +15,14 @@ describe PagesController, :signed_in do
       node = create(:crating, owner: viewer).node
       get :crate
       expect(assigns[:crate]).to include(node)
+    end
+  end
+
+  describe '#uploads' do
+    it 'assigns @uploaded_nodes' do
+      node = create(:node, uploader: viewer)
+      get :uploads
+      expect(assigns[:uploaded_nodes]).to include(node)
     end
   end
 end
