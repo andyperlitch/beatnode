@@ -24,11 +24,4 @@ describe Node do
 
     expect(subject.usages).to include(usage)
   end
-
-  it 'knows if its in a users crate' do
-    crating = create(:crating, node: subject)
-    user    = crating.owner
-
-    expect(subject).to be_in_user_crate(user)
-  end
 end

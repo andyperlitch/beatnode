@@ -29,7 +29,7 @@ describe NodesController, :signed_in do
 
     it 'adds the uploaded node to the users crate' do
       post :create, params
-      expect(Node.last).to be_in_user_crate(viewer)
+      expect(viewer.crate).to include(Node.last)
     end
 
     it 'protects against mass assignment on uploader_id' do

@@ -35,6 +35,10 @@ class User < Sequel::Model
     Crating.create(owner: self, node: node)
   end
 
+  def has_in_crate?(node)
+    !crate_dataset.where(node_id: node.id).empty?
+  end
+
   def recent_uploads
     uploaded_nodes_dataset.recent
   end

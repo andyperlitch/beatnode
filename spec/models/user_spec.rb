@@ -46,4 +46,18 @@ describe User do
       expect(subject.crate).to include(crated)
     end
   end
+
+  describe '#has_in_crate?' do
+    it 'returns false' do
+      node = create(:node)
+      expect(subject.has_in_crate?(node)).to be_false
+    end
+
+    it 'returns false' do
+      crating = create(:crating, owner: subject)
+      node    = crating.node
+
+      expect(subject.has_in_crate?(node)).to be_true
+    end
+  end
 end
