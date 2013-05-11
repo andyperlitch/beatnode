@@ -33,9 +33,9 @@ describe NodesController, :signed_in do
       expect(Node.last.uploader).to eq(viewer)
     end
 
-    it 'redirects to the home page' do
+    it 'redirects to the uploads page' do
       post :create, params
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(uploads_path)
     end
 
     it 're-renders the new action if there are errors' do

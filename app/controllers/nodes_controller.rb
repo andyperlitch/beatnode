@@ -9,7 +9,7 @@ class NodesController < ApplicationController
     if @node.valid?
       @node.save
       flash[:success] = 'Success!'
-      redirect_to root_url
+      redirect_to uploads_path
     else
       render :new
     end
