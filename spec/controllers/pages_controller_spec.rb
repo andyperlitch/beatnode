@@ -12,17 +12,17 @@ describe PagesController, :signed_in do
 
   describe '#crate' do
     it 'assigns @crate' do
-      node = create(:crating, owner: viewer).node
+      sound = create(:crating, owner: viewer).sound
       get :crate
-      expect(assigns[:crate]).to include(node)
+      expect(assigns[:crate]).to include(sound)
     end
   end
 
   describe '#uploads' do
-    it 'assigns @uploaded_nodes' do
-      node = create(:node, uploader: viewer)
+    it 'assigns @uploaded_sounds' do
+      sound = create(:sound, uploader: viewer)
       get :uploads
-      expect(assigns[:uploaded_nodes]).to include(node)
+      expect(assigns[:uploaded_sounds]).to include(sound)
     end
   end
 end

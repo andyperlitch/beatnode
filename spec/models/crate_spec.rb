@@ -7,7 +7,7 @@ describe Crate do
   subject { Crate.new(user) }
 
   it 'implements Enumerable' do
-    node = crating.node
+    sound = crating.sound
 
     subject.each do |n|
       expect(subject).to include(n)
@@ -27,13 +27,13 @@ describe Crate do
 
   describe '#include?' do
     it 'returns false' do
-      node = create(:node)
-      expect(subject).to_not include(node)
+      sound = create(:sound)
+      expect(subject).to_not include(sound)
     end
 
     it 'returns true' do
       crating
-      expect(subject).to include(crating.node)
+      expect(subject).to include(crating.sound)
     end
   end
 
@@ -49,11 +49,11 @@ describe Crate do
   end
 
   describe '#add' do
-    let(:node) { create(:node) }
+    let(:sound) { create(:sound) }
 
-    it 'adds nodes' do
-      subject.add(node)
-      expect(subject).to include(node)
+    it 'adds sounds' do
+      subject.add(sound)
+      expect(subject).to include(sound)
     end
   end
 end

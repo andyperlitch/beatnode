@@ -1,5 +1,5 @@
 class User < Sequel::Model
-  one_to_many :uploaded_nodes, class: :Node, key: :uploader_id
+  one_to_many :uploaded_sounds, class: :Sound, key: :uploader_id
 
   many_to_many :followers, class: :User,
     left_key:   :subject_id,
@@ -20,9 +20,9 @@ class User < Sequel::Model
     end
   end
 
-  def build_node(params={})
-    Node.new(params).tap do |node|
-      node.uploader = self
+  def build_sound(params={})
+    Sound.new(params).tap do |sound|
+      sound.uploader = self
     end
   end
 
@@ -31,6 +31,6 @@ class User < Sequel::Model
   end
 
   def recent_uploads
-    uploaded_nodes_dataset.recent
+    uploaded_sounds_dataset.recent
   end
 end

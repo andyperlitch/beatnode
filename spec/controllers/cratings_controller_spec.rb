@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe CratingsController, :signed_in do
   describe '#create' do
-    let(:node)   { create(:node) }
-    let(:params) { {crating: {node_id: node.id}} }
+    let(:sound)   { create(:sound) }
+    let(:params) { {crating: {sound_id: sound.id}} }
 
-    it 'adds a node to the crate' do
+    it 'adds a sound to the crate' do
       expect do
         post :create, params
       end.to change { viewer.reload.crate.count }.by(1)

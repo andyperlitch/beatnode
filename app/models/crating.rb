@@ -1,8 +1,8 @@
 class Crating < Sequel::Model
   many_to_one :owner, class: :User
-  many_to_one :node
+  many_to_one :sound
 
-  def self.create_between(user, node)
-    create(owner: user, node: node)
+  def self.create_between(user, sound)
+    create(owner: user, sound: sound)
   end
 end

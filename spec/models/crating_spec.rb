@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe Crating do
   let(:user) { create(:user) }
-  let(:node) { create(:node) }
+  let(:sound) { create(:sound) }
 
   describe '.create_between' do
     it 'creates a crating' do
-      crating = Crating.create_between(user, node)
+      crating = Crating.create_between(user, sound)
 
       expect(crating.owner).to be(user)
-      expect(crating.node).to  be(node)
+      expect(crating.sound).to  be(sound)
     end
   end
 
@@ -19,7 +19,7 @@ describe Crating do
 
       expect do
         Crating.create(:crating, owner: crating.owner,
-                                 node:  crating.node)
+                                 sound:  crating.sound)
       end.to raise_error
     end
   end

@@ -1,0 +1,13 @@
+<% if sounds.empty? %>
+  <h3><%= empty_msg ||= 'No sounds.' %></h3>
+<% else %>
+  <% sounds.each do |sound| %>
+    <div class=sound>
+      <h2 class=title>
+        <%= link_to sound.title, sound_path(id: sound.id) %>
+      </h2>
+
+      <%= render partial: 'cratings/button', locals: {sound: sound} %>
+    </div>
+  <% end %>
+<% end %>

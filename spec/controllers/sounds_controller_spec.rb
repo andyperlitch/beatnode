@@ -1,41 +1,41 @@
 require 'spec_helper'
 
-describe NodesController, :signed_in do
+describe SoundsController, :signed_in do
   describe '#new' do
     it 'is successful' do
       get :new
       expect(response).to be_success
     end
 
-    it 'assigns a new node belonging to the viewer' do
+    it 'assigns a new sound belonging to the viewer' do
       get :new
-      expect(assigns[:node].uploader).to eq(viewer)
+      expect(assigns[:sound].uploader).to eq(viewer)
     end
   end
 
   describe '#create' do
-    let(:params) { {node: {title: 'A title'}} }
+    let(:params) { {sound: {title: 'A title'}} }
 
-    it 'creates a node' do
+    it 'creates a sound' do
       expect do
         post :create, params
-      end.to change(Node, :count).by(1)
+      end.to change(Sound, :count).by(1)
     end
 
     it 'sets attributes' do
       post :create, params
-      expect(Node.last.title).to eq('A title')
+      expect(Sound.last.title).to eq('A title')
     end
 
-    it 'adds the uploaded node to the users crate' do
+    it 'adds the uploaded sound to the users crate' do
       post :create, params
-      expect(viewer.crate).to include(Node.last)
+      expect(viewer.crate).to include(Sound.last)
     end
 
     it 'protects against mass assignment on uploader_id' do
       other_user = create(:user)
       post :create, params.merge(uploader_id: other_user.id)
-      expect(Node.last.uploader).to eq(viewer)
+      expect(Sound.last.uploader).to eq(viewer)
     end
 
     it 'redirects to the uploads page' do
@@ -44,18 +44,18 @@ describe NodesController, :signed_in do
     end
 
     it 're-renders the new action if there are errors' do
-      post :create, {node: {title: ''}}
+      post :create, {sound: {title: ''}}
       assert_template :new
     end
   end
 
   describe '#show' do
-    let(:node)      { create(:node) }
-    let(:source)    { create(:node) }
-    let!(:sampling) { create(:sampling, source: source, result: node) }
+    let(:sound)      { create(:sound) }
+    let(:source)    { create(:sound) }
+    let!(:sampling) { create(:sampling, source: source, result: sound) }
 
     it 'assigns @sources' do
-      get :show, id: node.id
+      get :show, id: sound.id
       expect(assigns[:sources]).to include(source)
     end
   end

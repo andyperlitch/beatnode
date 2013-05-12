@@ -1,6 +1,6 @@
 <h1>My Uploads</h1>
 
-<%= link_to 'Upload', new_node_path %>
+<%= link_to 'Upload', new_sound_path %>
 
-<%= render partial: 'nodes/list',
-  locals: {nodes: @uploaded_nodes, empty_msg: 'No uploaded nodes.'} %>
+<%= render partial: 'sounds/list',
+  locals: {sounds: @uploaded_sounds, empty_msg: 'No uploaded sounds.'} %>

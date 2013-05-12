@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe UsersController, :signed_in do
   let(:user) { create(:user) }
-  let(:node) { create(:node, uploader: user) }
+  let(:sound) { create(:sound, uploader: user) }
 
   describe '#show' do
     it 'is successful' do
@@ -15,10 +15,10 @@ describe UsersController, :signed_in do
       expect(assigns[:user]).to eq(user)
     end
 
-    it 'assigns @uploaded_nodes' do
-      node
+    it 'assigns @uploaded_sounds' do
+      sound
       get :show, id: user.id
-      expect(assigns[:uploaded_nodes]).to include(node)
+      expect(assigns[:uploaded_sounds]).to include(sound)
     end
 
     it 'returns 404 if the user isnt found' do

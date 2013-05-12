@@ -15,7 +15,7 @@ DB.create_table :users do
   index [:provider_id, :provider_name]
 end
 
-DB.create_table :nodes do
+DB.create_table :sounds do
   primary_key :id
 
   foreign_key :uploader_id, :users, index: true, null: false
@@ -26,8 +26,8 @@ DB.create_table :nodes do
 end
 
 DB.create_table :samplings do
-  foreign_key :source_id, :nodes, null: false
-  foreign_key :result_id, :nodes, null: false
+  foreign_key :source_id, :sounds, null: false
+  foreign_key :result_id, :sounds, null: false
 
   index [:source_id, :result_id], unique: true
 end
@@ -41,7 +41,7 @@ end
 
 DB.create_table :cratings do
   foreign_key :owner_id, :users, null: false
-  foreign_key :node_id,  :nodes, null: false
+  foreign_key :sound_id,  :sounds, null: false
 
-  index [:owner_id, :node_id], unique: true
+  index [:owner_id, :sound_id], unique: true
 end

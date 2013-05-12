@@ -1,0 +1,16 @@
+<div class=sound>
+  <h1><%= @sound.title %></h1>
+
+  <%= render partial: 'cratings/button',
+    locals: {sound: @sound} %>
+
+  <%= render partial: 'samplings/button',
+    locals: {sound: @sound, crate: @crate} %>
+
+  <div id=sources>
+    <h2>Samples</h2>
+
+    <%= render partial: 'sounds/list',
+      locals: {sounds: @sources, empty_msg: 'No sources.'} %>
+  </div>
+</div>

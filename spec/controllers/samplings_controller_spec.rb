@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe SamplingsController, :signed_in do
-  let(:source) { create(:node) }
-  let(:result) { create(:node, uploader: viewer) }
+  let(:source) { create(:sound) }
+  let(:result) { create(:sound, uploader: viewer) }
 
   describe '#create' do
     let(:params) do
@@ -16,7 +16,7 @@ describe SamplingsController, :signed_in do
     end
 
     it 'prevents mass assignment of a not-owned result_id' do
-      other = create(:node)
+      other = create(:sound)
       params[:sampling].merge!(result_id: other.id)
 
       expect do

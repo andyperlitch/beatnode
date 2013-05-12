@@ -9,14 +9,14 @@ FactoryGirl.define do
     provider_name 'soundcloud'
   end
 
-  factory :node do
+  factory :sound do
     uploader factory: :user
     title { Faker::Name.name }
   end
 
   factory :sampling do
-    source factory: :node
-    result factory: :node
+    source factory: :sound
+    result factory: :sound
   end
 
   factory :collaboration do
@@ -26,7 +26,7 @@ FactoryGirl.define do
 
   factory :crating do
     owner factory: :user
-    node
+    sound
   end
 
   sequence :username do |i|
