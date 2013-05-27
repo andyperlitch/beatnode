@@ -20,8 +20,8 @@ class SoundsController < ApplicationController
   end
 
   def show
-    @sound   = Sound[params[:id]]
-    @sources = @sound.sources
-    @crate   = viewer.crate
+    @sound      = Sound[params[:id]]
+    @sources    = @sound.sources
+    @sampleable = viewer.crate.without(*(@sources + [@sound]))
   end
 end

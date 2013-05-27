@@ -23,6 +23,11 @@ class Crate < Struct.new(:user)
     Crating.create_between(user, sound)
   end
 
+  def without(*sounds)
+    ids = sounds.map(&:id)
+    dataset.exclude(sound_id: ids)
+  end
+
   private
 
   def dataset

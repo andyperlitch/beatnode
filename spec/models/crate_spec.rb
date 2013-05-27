@@ -56,4 +56,25 @@ describe Crate do
       expect(subject).to include(sound)
     end
   end
+
+  describe '#without' do
+    let(:sound) { create(:sound) }
+
+    before { subject.add(sound) }
+
+    it 'discludes the sound from the crate' do
+      expect(subject.without(sound)).to_not include(sound)
+    end
+
+    it 'discludes several sounds' do
+      other_sound = create(:sound)
+      subject.add(other_sound)
+      expect(subject.without(sound, other_sound)).to be_empty
+    end
+
+    it 'is non-destructive' do
+      subject.without(sound)
+      expect(subject).to include(sound)
+    end
+  end
 end
