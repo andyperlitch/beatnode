@@ -9,4 +9,6 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Beatnode::Application.config.secret_key_base = '411195a3ea4903aa07bb19e90dd9af327a668064f3eb7e6b660788ec26871a8624d8867441cdc0bc610f789fedce6d3e4af8be6142e658f4ae74af71c3ba4d6f'
+
+Beatnode::Application.config.secret_key_base =
+  Rails.env.test? ? 'secret' : ENV['BEATNODE_SESSION_SECRET']
