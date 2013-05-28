@@ -8,7 +8,7 @@ require 'database_cleaner'
 
 FactoryGirl.find_definitions
 
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[Rails.root.join('spec/support/**/*.rb')].each &method(:require)
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
@@ -19,7 +19,7 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each) do

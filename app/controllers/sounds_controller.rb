@@ -7,7 +7,7 @@ class SoundsController < ApplicationController
     @sound = viewer.build_sound(params[:sound])
 
     if @sound.valid?
-      DB.transaction do
+      Sound.db.transaction do
         @sound.save
         viewer.crate.add(@sound)
       end

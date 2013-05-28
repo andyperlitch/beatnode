@@ -7,8 +7,6 @@ require 'sprockets/railtie'
 require 'jquery-rails'
 require 'turbolinks'
 
-require File.expand_path('../database', __FILE__)
-
 module Beatnode
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

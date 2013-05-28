@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails',   '4.0.0.rc1'
 
-gem 'sqlite3',             '1.3.7'
+gem 'pg',                  '0.15.1'
 gem 'sequel',              '3.46.0'
 gem 'omniauth-soundcloud', '1.0.1'
 

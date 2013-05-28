@@ -8,8 +8,8 @@ describe Crating do
     it 'creates a crating' do
       crating = Crating.create_between(user, sound)
 
-      expect(crating.owner).to be(user)
-      expect(crating.sound).to  be(sound)
+      expect(crating.owner).to eq(user)
+      expect(crating.sound).to eq(sound)
     end
   end
 
