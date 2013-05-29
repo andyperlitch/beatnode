@@ -1,13 +1,13 @@
 <div class=sampling>
-  <%= form_for :sampling, url: samplings_path do |f| %>
+  <%= form_for :sampling, url: samplings_path, html: {class: 'pure-form'} do |f| %>
     <%= f.hidden_field :result_id, value: sound.id %>
 
     <% if sampleable.empty? %>
       No samples to add.
     <% else %>
-      Add sample:
       <%= f.collection_select :source_id, sampleable, :id, :title %>
-      <%= f.submit 'Submit' %>
+
+      <%= f.submit 'Add sample', class: 'pure-button' %>
     <% end %>
   <% end %>
 </div>

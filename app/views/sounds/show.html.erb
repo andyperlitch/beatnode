@@ -1,8 +1,10 @@
 <div class=sound>
   <h1><%= @sound.title %></h1>
 
-  <%= render partial: 'cratings/button',
-    locals: {sound: @sound} %>
+  <% unless viewer.crate.include?(@sound) %>
+    <%= render partial: 'cratings/button',
+      locals: {sound: @sound} %>
+  <% end %>
 
   <%= render partial: 'samplings/button',
     locals: {sound: @sound, sampleable: @sampleable} %>

@@ -7,7 +7,9 @@
         <%= link_to sound.title, sound_path(id: sound.id) %>
       </h2>
 
-      <%= render partial: 'cratings/button', locals: {sound: sound} %>
+      <% unless viewer.crate.include?(sound) %>
+        <%= render partial: 'cratings/button', locals: {sound: sound} %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
