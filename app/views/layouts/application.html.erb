@@ -2,16 +2,24 @@
 <html>
   <head>
     <title>Beatnode</title>
+
+    <link rel='stylesheet' href='http://yui.yahooapis.com/pure/0.1.0/pure-min.css'  type='text/css'>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Montserrat' type='text/css'>
+
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <% if signed_in? %>
-      <%= render partial: 'shared/header' %>
-    <% end %>
+    <div class="pure-g-r" id="container">
+      <% if signed_in? %>
+        <%= render partial: 'shared/header' %>
+      <% end %>
 
-    <%= yield %>
+      <div class="pure-u-1" id="main">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
