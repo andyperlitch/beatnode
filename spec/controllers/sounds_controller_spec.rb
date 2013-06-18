@@ -50,13 +50,11 @@ describe SoundsController, :signed_in do
   end
 
   describe '#show' do
-    let(:sound)      { create(:sound) }
-    let(:source)    { create(:sound) }
-    let!(:sampling) { create(:sampling, source: source, result: sound) }
+    let(:sound) { create(:sound) }
 
-    it 'assigns @sources' do
+    it 'assigns @sound' do
       get :show, id: sound.id
-      expect(assigns[:sources]).to include(source)
+      expect(assigns[:sound]).to eq(sound)
     end
   end
 end

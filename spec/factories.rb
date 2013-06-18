@@ -14,11 +14,6 @@ FactoryGirl.define do
     title { Faker::Name.name }
   end
 
-  factory :sampling do
-    source factory: :sound
-    result factory: :sound
-  end
-
   factory :collaboration do
     source  factory: :user
     subject factory: :user

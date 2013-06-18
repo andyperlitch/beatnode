@@ -5,14 +5,4 @@
     <%= render partial: 'cratings/button',
       locals: {sound: @sound} %>
   <% end %>
-
-  <%= render partial: 'samplings/button',
-    locals: {sound: @sound, sampleable: @sampleable} %>
-
-  <div id=sources>
-    <h2>Samples</h2>
-
-    <%= render partial: 'sounds/list',
-      locals: {sounds: @sources, empty_msg: 'No sources.'} %>
-  </div>
 </div>

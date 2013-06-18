@@ -9,7 +9,6 @@ Beatnode::Application.routes.draw do
 
   resources :users,          only: [:show]
   resources :sounds,         only: [:new, :create, :show]
-  resources :samplings,      only: [:create]
   resources :collaborations, only: [:create]
   resources :cratings,       only: [:create]
 end
