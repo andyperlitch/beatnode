@@ -6,7 +6,6 @@ gem 'rails',   '4.0.0.rc1'
 gem 'pg',                  '0.15.1'
 gem 'sequel',              '3.46.0'
 gem 'omniauth-soundcloud', '1.0.1'
-gem 'carrierwave',         '0.8.0'
 
 group :development do
   gem 'pry', '0.9.12.1'
