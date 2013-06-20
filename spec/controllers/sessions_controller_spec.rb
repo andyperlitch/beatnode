@@ -18,6 +18,14 @@ describe SessionsController do
       request.env['omniauth.auth'] = auth_hash
     end
 
+    it 'finds the user from an auth object' do
+      User.should_receive(:find_or_create_from_auth).
+        with(kind_of(Auth::Soundcloud)).
+        and_return(user)
+
+      post :create, provider: 'soundcloud'
+    end
+
     it 'signs in the user' do
       post :create, provider: 'soundcloud'
       expect(session[:user_id]).to be(user.id)

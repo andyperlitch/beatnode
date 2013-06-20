@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_or_create_from_auth(auth_hash)
+    user = User.find_or_create_from_auth(auth)
     sign_in!(user)
 
     redirect_to referrer || root_path
@@ -18,8 +18,8 @@ class SessionsController < ApplicationController
 
   private
 
-  def auth_hash
-    request.env['omniauth.auth']
+  def auth
+    Auth.from_hash(request.env['omniauth.auth'])
   end
 
   def referrer

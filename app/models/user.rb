@@ -11,8 +11,7 @@ class User < Sequel::Model
     right_key:  :subject_id,
     join_table: :collaborations
 
-  def self.find_or_create_from_auth(auth_hash)
-    auth = Auth.from_hash(auth_hash)
+  def self.find_or_create_from_auth(auth)
     prov, id = auth.provider_name, auth.provider_id
 
     find_or_create(provider_name: prov, provider_id: id) do |u|
