@@ -5,6 +5,7 @@ require 'rspec/autorun'
 
 require 'factory_girl'
 require 'database_cleaner'
+require 'fileutils'
 
 FactoryGirl.find_definitions
 
@@ -28,5 +29,6 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+    FileUtils.rm_rf(Rails.root.join('uploads', 'test'))
   end
 end
