@@ -1,4 +1,4 @@
-shared_context 'with a signed in user', :signed_in => true do
+shared_context 'with a signed in user', signed_in: true do
   let(:viewer) { create(:user) }
   let(:back)   { root_path }
 
