@@ -10,6 +10,8 @@ module Beatnode
         File.open(full_path(to_path), 'wb') do |f|
           f.write(file.read)
         end
+
+        true
       end
 
       def fetch(path)
