@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails',   '4.0.0.rc1'
+gem 'rails',   '4.0.0.rc2'
 
 gem 'pg',                  '0.15.1'
 gem 'sequel',              '3.46.0'
@@ -19,11 +19,9 @@ group :test do
 end
 
 group :assets do
-  gem 'sass-rails',   '~> 4.0.0.rc1'
-  gem 'uglifier',     '>= 1.3.0'
-  gem 'coffee-rails', '~> 4.0.0'
-  gem 'jquery-rails'
-  gem 'turbolinks'
+  gem 'uglifier',     '2.1.1'
+  gem 'jquery-rails', '3.0.1'
+  gem 'turbolinks',   '1.2.0'
 end
 
 # Use ActiveModel has_secure_password
