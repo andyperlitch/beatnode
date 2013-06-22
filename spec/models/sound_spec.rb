@@ -3,11 +3,14 @@ require 'spec_helper'
 describe Sound do
   subject { create(:sound, title: 'A sound') }
 
-  it 'has an uploader' do
-    expect(subject.uploader).to be_a(User)
-  end
+  describe '#uploader' do
+    it 'is nil' do
+      expect(subject.uploader).to be_nil
+    end
 
-  it 'has a title' do
-    expect(subject.title).to eq('A sound')
+    it 'pulls from uploads join table' do
+      upload = create(:upload, :sound => subject)
+      expect(subject.uploader).to eq(upload.user)
+    end
   end
 end

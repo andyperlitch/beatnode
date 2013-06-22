@@ -2,21 +2,15 @@ require 'spec_helper'
 
 describe UsersController, :signed_in do
   let(:user) { create(:user) }
-  let(:sound) { create(:sound, uploader: user) }
 
   describe '#show' do
-    it 'is successful' do
-      get :show, id: user.id
-      expect(response).to be_success
-    end
-
     it 'assigns @user' do
       get :show, id: user.id
       expect(assigns[:user]).to eq(user)
     end
 
     it 'assigns @uploaded_sounds' do
-      sound
+      sound = create(:upload, user: user).sound
       get :show, id: user.id
       expect(assigns[:uploaded_sounds]).to include(sound)
     end

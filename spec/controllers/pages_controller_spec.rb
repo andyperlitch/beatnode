@@ -20,7 +20,7 @@ describe PagesController, :signed_in do
 
   describe '#uploads' do
     it 'assigns @uploaded_sounds' do
-      sound = create(:sound, uploader: viewer)
+      sound = create(:upload, user: viewer).sound
       get :uploads
       expect(assigns[:uploaded_sounds]).to include(sound)
     end

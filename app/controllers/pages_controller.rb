@@ -7,6 +7,6 @@ class PagesController < ApplicationController
   end
 
   def uploads
-    @uploaded_sounds = viewer.recent_uploads
+    @uploaded_sounds = viewer.uploaded_sounds
   end
 end

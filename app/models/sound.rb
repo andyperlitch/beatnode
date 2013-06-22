@@ -1,8 +1,8 @@
 class Sound < Sequel::Model
-  many_to_one :uploader, class: :User
-
-  def_dataset_method :recent do
-    order(:created_at.desc)
+  def uploader
+    User.select(:users.*).
+      join(:uploads, user_id: :id).
+      where(sound_id: self.id).first
   end
 
   def validate

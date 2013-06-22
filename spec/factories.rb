@@ -10,7 +10,6 @@ FactoryGirl.define do
   end
 
   factory :sound do
-    uploader factory: :user
     title { Faker::Name.name }
   end
 
