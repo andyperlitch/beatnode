@@ -1,5 +1,7 @@
 class SoundsController < ApplicationController
   def show
-    @sound = Sound[params[:id]]
+    unless @sound = Sound[params[:id]]
+      head 404
+    end
   end
 end
