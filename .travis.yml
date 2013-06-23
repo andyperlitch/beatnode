@@ -1,5 +1,5 @@
 env:
   - RAILS_ENV=test
 rvm:
-  - '2.0.0'
+  - '2.0.0-p195'
 before_script: ./bin/run_build.sh
