@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe UploadsController, :signed_in do
+  describe '#new' do
+    it 'assigns a new upload' do
+      get :new
+      expect(assigns[:upload]).to be_an(Upload)
+    end
+  end
+
   describe '#create' do
     let(:location)      { '/user/sound.mp3' }
     let(:sound_params)  { attributes_for(:sound) }
@@ -22,6 +29,11 @@ describe UploadsController, :signed_in do
       expect do
         post :create, params
       end.to change(Upload, :count).by(1)
+    end
+
+    it 'redirects to the uploads page' do
+      post :create, params
+      expect(response).to redirect_to(uploads_path)
     end
   end
 end

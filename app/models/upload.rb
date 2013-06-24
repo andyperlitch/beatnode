@@ -5,8 +5,9 @@ class Upload < Sequel::Model
   def self.create_for(user, attrs, sound_attrs)
     db.transaction do
       create(attrs) do |upload|
-        upload.sound = Sound.create(sound_attrs)
-        upload.user  = user
+        upload.sound    = Sound.create(sound_attrs)
+        upload.user     = user
+        upload.location = 'this/is/temporary'
       end
     end
   end
