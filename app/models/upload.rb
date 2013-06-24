@@ -1,4 +1,4 @@
-class Upload < Sequel::Model
+class Upload < Model
   many_to_one :user
   many_to_one :sound
 
@@ -14,7 +14,8 @@ class Upload < Sequel::Model
 
   def validate
     super
-    validates_presence :location
-    validates_unique   :sound_id
+    validates_presence   :location
+    validates_unique     :sound_id
+    validates_associated :sound
   end
 end

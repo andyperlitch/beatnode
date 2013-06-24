@@ -1,4 +1,4 @@
-class Crating < Sequel::Model
+class Crating < Model
   many_to_one :owner, class: :User
   many_to_one :sound
 

@@ -1,4 +1,4 @@
-class Sound < Sequel::Model
+class Sound < Model
   def uploader
     User.select(:users.*).
       join(:uploads, user_id: :id).

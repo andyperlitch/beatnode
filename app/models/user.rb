@@ -1,4 +1,4 @@
-class User < Sequel::Model
+class User < Model
   one_to_many :uploads
 
   many_to_many :uploaded_sounds, class:      :Sound,

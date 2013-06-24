@@ -9,6 +9,12 @@ describe Upload do
     expect(subject.errors[:location]).to be_present
   end
 
+  it 'validates associated sound' do
+    subject.sound.title = ''
+    expect(subject).not_to be_valid
+    expect(subject.errors.on(:sound)).to include('title is not present')
+  end
+
   describe '.create_for' do
     let(:user)        { create(:user) }
     let(:attrs)       { attributes_for(:upload) }
