@@ -17,23 +17,28 @@ describe UploadsController, :signed_in do
       {upload: upload_params.merge(sound: sound_params)}
     end
 
-    it 'calls Upload#create_for with parameters' do
-      Upload.should_receive(:create_for).
-        with(viewer, upload_params.stringify_keys,
-                     sound_params.stringify_keys)
-
-      post :create, params
-    end
-
-    it 'creates an upload' do
+    it 'creates an Upload' do
       expect do
         post :create, params
       end.to change(Upload, :count).by(1)
     end
 
+    it 'creates a Sound' do
+      expect do
+        post :create, params
+      end.to change(Sound, :count).by(1)
+    end
+
     it 'redirects to the uploads page' do
       post :create, params
       expect(response).to redirect_to(uploads_path)
+    end
+
+    it 'assigns errors if the upload is invalid' do
+      sound_params.delete(:title)
+
+      post :create, params
+      expect(assigns[:errors]).to include('Sound title is not present')
     end
   end
 end

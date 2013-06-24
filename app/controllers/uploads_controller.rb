@@ -4,10 +4,18 @@ class UploadsController < ApplicationController
   end
 
   def create
-    sound_attrs = params[:upload].delete(:sound)
+    upload_attrs = params[:upload]
+    sound_attrs  = upload_attrs.delete(:sound)
 
-    Upload.create_for(viewer, params[:upload], sound_attrs)
+    uploader = SoundUploader.new(viewer, upload_attrs, sound_attrs)
 
-    redirect_to uploads_path
+    if uploader.valid?
+      uploader.upload!
+      redirect_to uploads_path
+    else
+      @upload = uploader.upload
+      @errors = uploader.errors.full_messages
+      render :new
+    end
   end
 end
