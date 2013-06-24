@@ -34,6 +34,12 @@ describe SoundUploader do
         expect(result.sound.send(attr)).to eq(value)
       end
     end
+
+    it 'adds the sound to the users crate' do
+      expect do
+        subject.upload!
+      end.to change { user.crate.count }.by(1)
+    end
   end
 
   describe 'valdation' do

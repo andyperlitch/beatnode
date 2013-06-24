@@ -20,9 +20,12 @@ class SoundUploader
   def upload!
     Upload.db.transaction do
       sound.save
+
       upload.sound = sound
       upload.user  = user
       upload.save
+
+      user.crate.add(sound)
     end
   end
 
