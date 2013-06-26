@@ -9,12 +9,12 @@ describe UploadsController, :signed_in do
   end
 
   describe '#create' do
-    let(:location)      { '/user/sound.mp3' }
+    let(:file_upload)   { generate(:file_upload) }
     let(:sound_params)  { attributes_for(:sound) }
-    let(:upload_params) { attributes_for(:upload) }
+    let(:upload_params) { attributes_for(:upload).except(:sha1) }
 
     let(:params) do
-      {upload: upload_params.merge(sound: sound_params)}
+      {upload: upload_params.merge(sound: sound_params, file: file_upload)}
     end
 
     it 'creates an Upload' do

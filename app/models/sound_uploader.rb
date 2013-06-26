@@ -3,24 +3,24 @@ require 'active_model'
 class SoundUploader
   include ActiveModel::Validations
 
-  attr_reader :user, :upload, :sound
+  attr_reader :file, :user, :upload, :sound
 
-  validate :valid_upload
   validate :valid_sound
 
-  def initialize(user, upload_attrs, sound_attrs)
+  def initialize(file, user, upload_attrs, sound_attrs)
+    @file   = file
     @user   = user
     @upload = Upload.new(upload_attrs)
     @sound  = Sound.new(sound_attrs)
-
-    # NOTE: this is temporary until filename generation is implemented
-    @upload.location = 'some/filename'
   end
 
   def upload!
     Upload.db.transaction do
       sound.save
 
+      sha1 = Beatnode::Storage.store!(file)
+
+      upload.sha1  = sha1
       upload.sound = sound
       upload.user  = user
       upload.save
@@ -30,14 +30,6 @@ class SoundUploader
   end
 
   private
-
-  def valid_upload
-    unless upload.valid?
-      upload.errors.full_messages.each do |msg|
-        errors.add(:upload, msg)
-      end
-    end
-  end
 
   def valid_sound
     unless sound.valid?

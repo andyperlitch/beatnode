@@ -36,12 +36,15 @@ module Beatnode
       protected
 
       def file_to_path(file)
-        sha1 = Digest::SHA1.file(file).hexdigest
-        sha1_to_path(sha1)
+        sha1_to_path(file_to_sha1(file))
       end
 
       def sha1_to_path(sha1)
-        sha1.insert(2, '/')
+        sha1.dup.insert(2, '/')
+      end
+
+      def file_to_sha1(file)
+        Digest::SHA1.file(file).hexdigest
       end
     end
   end

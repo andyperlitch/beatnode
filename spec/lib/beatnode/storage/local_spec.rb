@@ -4,18 +4,15 @@ module Beatnode
   module Storage
     describe Local do
       let(:store_dir) { Rails.root.join('uploads', 'test') }
+      let(:mp3)       { generate(:mp3) }
+      let(:sha1)      { 'abcdef' }
       let(:path)      { 'ab/cdef' }
       let(:dest)      { store_dir.join(path) }
-
-      let(:mp3) do
-        mp3_path = Rails.root.join('spec', 'fixtures', 'audio', 'test.mp3')
-        File.new(mp3_path, 'rb')
-      end
 
       subject { Local.new(store_dir) }
 
       before do
-        subject.stub(:file_to_path).and_return(path)
+        subject.stub(:file_to_sha1).and_return(sha1)
       end
 
       describe '#store!' do
@@ -25,16 +22,16 @@ module Beatnode
           end.to change { File.exists?(dest) }.from(false).to(true)
         end
 
-        it 'returns the relative path to the stored file' do
-          expect(subject.store!(mp3)).to eq(path)
+        it 'returns the sha1 used to calculate the path' do
+          expect(subject.store!(mp3)).to eq(sha1)
         end
       end
 
       describe '#fetch' do
         before { subject.store!(mp3) }
 
-        it 'fetches a file by relative path' do
-          fetched = subject.fetch(path)
+        it 'fetches a file by sha1' do
+          fetched = subject.fetch(sha1)
           expect(FileUtils.identical?(fetched, mp3)).to be_true
         end
       end

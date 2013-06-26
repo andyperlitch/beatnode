@@ -10,7 +10,8 @@ module Beatnode
       end
 
       def store!(file)
-        rel_path = file_to_path(file)
+        sha1     = file_to_sha1(file)
+        rel_path = sha1_to_path(sha1)
         dest     = full_path(rel_path)
 
         unless File.exists?(dest)
@@ -22,7 +23,7 @@ module Beatnode
           end
         end
 
-        rel_path
+        sha1
       end
 
       def fetch(sha1)

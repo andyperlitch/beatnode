@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Upload do
   subject { create(:upload) }
 
-  it 'validates location' do
-    subject.location = ''
+  it 'validates sha1' do
+    subject.sha1 = ''
     expect(subject).not_to be_valid
-    expect(subject.errors[:location]).to be_present
+    expect(subject.errors[:sha1]).to be_present
   end
 end
