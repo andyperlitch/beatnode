@@ -4,7 +4,7 @@ class Upload < Model
 
   def validate
     super
-    validates_presence   :location
-    validates_unique     :sound_id
+    validates_presence :location
+    validates_unique   :sound_id
   end
 end

@@ -2,31 +2,42 @@ require 'fileutils'
 
 module Beatnode
   module Storage
-    class Local < Struct.new(:store_dir)
-      def store!(file, to_path)
-        prepare_dir!(to_path)
-        file.rewind
+    class Local < Strategy
+      attr_reader :store_dir
 
-        File.open(full_path(to_path), 'wb') do |f|
-          f.write(file.read)
-        end
-
-        true
+      def initialize(store_dir)
+        @store_dir = store_dir
       end
 
-      def fetch(path)
-        File.new(full_path(path), 'rb')
+      def store!(file)
+        rel_path = file_to_path(file)
+        dest     = full_path(rel_path)
+
+        unless File.exists?(dest)
+          prepare_dir!(dest)
+          file.rewind
+
+          File.open(dest, 'wb') do |f|
+            f.write(file.read)
+          end
+        end
+
+        rel_path
+      end
+
+      def fetch(sha1)
+        from_path = sha1_to_path(sha1)
+        File.new(full_path(from_path), 'rb')
       end
 
       private
 
       def prepare_dir!(to_path)
-        full = full_path(to_path)
-        FileUtils.mkdir_p(File.dirname(full))
+        FileUtils.mkdir_p(File.dirname(to_path))
       end
 
-      def full_path(path)
-        File.join(store_dir, path)
+      def full_path(rel_path)
+        File.join(store_dir, rel_path)
       end
     end
   end
