@@ -9,10 +9,6 @@ module Beatnode
 
       delegate :store!, :fetch, to: :strategy
 
-      def included(base)
-        base.send(:include, StorageMethods)
-      end
-
       def use(strategy, options={})
         case strategy.to_sym
         when :local
