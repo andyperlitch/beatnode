@@ -13,4 +13,15 @@ describe Sound do
       expect(subject.uploader).to eq(upload.user)
     end
   end
+
+  describe '#upload' do
+    it 'is nil' do
+      expect(subject.upload).to be_nil
+    end
+
+    it 'returns an upload' do
+      upload = create(:upload, sound: subject)
+      expect(subject.upload).to eq(upload)
+    end
+  end
 end

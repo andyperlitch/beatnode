@@ -1,4 +1,6 @@
 class Sound < Model
+  one_to_one :upload
+
   def uploader
     User.select(:users.*).
       join(:uploads, user_id: :id).
