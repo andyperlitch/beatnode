@@ -18,6 +18,18 @@ module Beatnode
           raise UnknownStrategy, strategy.inspect
         end
       end
+
+      def file_to_path(file)
+        sha1_to_path(file_to_sha1(file))
+      end
+
+      def sha1_to_path(sha1)
+        sha1.dup.insert(2, '/')
+      end
+
+      def file_to_sha1(file)
+        Digest::SHA1.file(file).hexdigest
+      end
     end
 
     class Strategy
@@ -32,15 +44,15 @@ module Beatnode
       protected
 
       def file_to_path(file)
-        sha1_to_path(file_to_sha1(file))
+        Storage.file_to_path(file)
       end
 
       def sha1_to_path(sha1)
-        sha1.dup.insert(2, '/')
+        Storage.sha1_to_path(sha1)
       end
 
       def file_to_sha1(file)
-        Digest::SHA1.file(file).hexdigest
+        Storage.file_to_sha1(file)
       end
     end
   end

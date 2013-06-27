@@ -6,7 +6,7 @@ module Beatnode
       attr_reader :store_dir
 
       def initialize(store_dir)
-        @store_dir = store_dir
+        @store_dir = store_dir.sub(/\/+$/, '')
       end
 
       def store!(file)
