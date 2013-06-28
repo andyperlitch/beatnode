@@ -1,6 +1,10 @@
 <div class=sound>
   <h1><%= @sound.title %></h1>
 
+  <audio controls>
+    <source src=<%= @sound.upload.src %> type='audio/mpeg'>
+  </audio>
+
   <% unless viewer.crate.include?(@sound) %>
     <%= render partial: 'cratings/button',
       locals: {sound: @sound} %>

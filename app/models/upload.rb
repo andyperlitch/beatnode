@@ -7,4 +7,8 @@ class Upload < Model
     validates_presence :sha1
     validates_unique   :sound_id
   end
+
+  def src
+    Beatnode::Storage.src_for(sha1)
+  end
 end
