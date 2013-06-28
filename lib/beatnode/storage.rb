@@ -7,13 +7,14 @@ module Beatnode
     class << self
       attr_reader :strategy
 
-      delegate :store!, :fetch, to: :strategy
+      delegate :store!, :fetch, :clear!, to: :strategy
 
       def use(strategy, options={})
         case strategy.to_sym
         when :local
-          store_dir = options.fetch(:store_dir)
-          @strategy = Local.new(store_dir)
+          public_dir = options.fetch(:public_dir)
+          store_dir  = options.fetch(:store_dir)
+          @strategy  = Local.new(public_dir, store_dir)
         else
           raise UnknownStrategy, strategy.inspect
         end

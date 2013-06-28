@@ -3,17 +3,17 @@ require 'spec_helper'
 module Beatnode
   module Storage
     describe Local do
-      let(:store_dir) { Rails.root.join('uploads', 'test') }
-      let(:mp3)       { generate(:mp3) }
-      let(:sha1)      { 'abcdef' }
-      let(:path)      { 'ab/cdef' }
-      let(:dest)      { store_dir.join(path) }
+      let(:public_dir) { Rails.root.join('public') }
+      let(:store_dir)  { 'uploads/test' }
+      let(:mp3)        { generate(:mp3) }
+      let(:sha1)       { 'abcdef' }
+      let(:path)       { 'ab/cdef' }
+      let(:dest)       { public_dir.join(store_dir, path) }
 
-      subject { Local.new(store_dir) }
+      subject { Local.new(public_dir, store_dir) }
 
-      before do
-        subject.stub(:file_to_sha1).and_return(sha1)
-      end
+      before { subject.stub(:file_to_sha1).and_return(sha1) }
+      after  { subject.clear! }
 
       describe '#store!' do
         it 'saves the file to disk' do

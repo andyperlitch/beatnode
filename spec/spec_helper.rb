@@ -29,6 +29,5 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
-    FileUtils.rm_rf(Rails.root.join('uploads', 'test'))
   end
 end
