@@ -12,7 +12,7 @@ module Beatnode
       def use(strategy, options={})
         case strategy.to_sym
         when :local
-          public_dir = options.fetch(:public_dir)
+          public_dir = options.fetch(:public_dir, Rails.public_path)
           store_dir  = options.fetch(:store_dir)
           @strategy  = Local.new(public_dir, store_dir)
         else
