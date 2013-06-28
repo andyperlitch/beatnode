@@ -7,7 +7,7 @@ module Beatnode
     class << self
       attr_reader :strategy
 
-      delegate :store!, :fetch, :clear!, to: :strategy
+      delegate :store!, :fetch, :clear!, :src_for, to: :strategy
 
       def use(strategy, options={})
         case strategy.to_sym

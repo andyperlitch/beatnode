@@ -36,6 +36,10 @@ module Beatnode
         FileUtils.rm_rf(base_path)
       end
 
+      def src_for(sha1)
+        File.join('/', store_dir, sha1_to_path(sha1))
+      end
+
       private
 
       def clean_dir(dir)

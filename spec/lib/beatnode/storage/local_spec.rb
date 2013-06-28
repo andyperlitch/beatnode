@@ -30,9 +30,16 @@ module Beatnode
       describe '#fetch' do
         before { subject.store!(mp3) }
 
-        it 'fetches a file by sha1' do
+        it 'fetches a file by its sha1' do
           fetched = subject.fetch(sha1)
           expect(FileUtils.identical?(fetched, mp3)).to be_true
+        end
+      end
+
+      describe '#src_for' do
+        it 'returns a path relative to the public_dir' do
+          expected = File.join('/', store_dir, path)
+          expect(subject.src_for(sha1)).to eq(expected)
         end
       end
     end
