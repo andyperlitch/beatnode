@@ -2,11 +2,15 @@
   <h1><%= @sound.title %></h1>
 
   <audio controls>
-    <source src=<%= @sound.upload.src %> type='audio/mpeg'>
+    <source src=<%= @upload.src %> type=<%= @upload.content_type %>>
   </audio>
 
-  <% unless viewer.crate.include?(@sound) %>
-    <%= render partial: 'cratings/button',
-      locals: {sound: @sound} %>
+  <% if viewer.crate.include?(@sound) %>
+    <div class=download>
+      <%= button_to 'Download',
+        download_sound_path(@sound.id), class: 'pure-button' %>
+    </div>
+  <% else %>
+    <%= render partial: 'cratings/button', locals: {sound: @sound} %>
   <% end %>
 </div>

@@ -2,6 +2,6 @@
   <%= form_for :crating, url: cratings_path, html: {class: 'pure-form'} do |f| %>
     <%= f.hidden_field :sound_id, value: sound.id %>
 
-    <%= f.submit 'Add to crate', class: 'pure-button' %>
+    <%= f.button 'Add to crate', class: 'pure-button' %>
   <% end %>
 </div>

@@ -9,9 +9,9 @@ describe SoundsController, :signed_in do
       expect(assigns[:sound]).to eq(sound)
     end
 
-    it 'returns 404 if sound isnt found' do
-      get :show, id: 123
-      expect(response.status).to be(404)
+    it 'assigns @upload' do
+      get :show, id: sound.id
+      expect(assigns[:upload]).to eq(sound.upload)
     end
   end
 

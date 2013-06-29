@@ -12,4 +12,8 @@ class Upload < Model
   def src
     Beatnode::Storage.src_for(sha1)
   end
+
+  def file
+    Beatnode::Storage.fetch(sha1)
+  end
 end

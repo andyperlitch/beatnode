@@ -1,8 +1,7 @@
 class SoundsController < ApplicationController
   def show
-    unless @sound = Sound[params[:id]]
-      head 404
-    end
+    @sound  = Sound[params[:id]]
+    @upload = @sound.upload
   end
 
   def new
@@ -22,5 +21,13 @@ class SoundsController < ApplicationController
       @sound = uploader.sound
       render :new
     end
+  end
+
+  def download
+    sound  = Sound[params[:id]]
+    upload = sound.upload
+    file   = upload.file
+
+    send_data file, filename: sound.title, type: upload.content_type
   end
 end

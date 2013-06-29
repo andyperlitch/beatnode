@@ -8,7 +8,12 @@ Beatnode::Application.routes.draw do
   match  '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 
   resources :users,          only: [:show]
-  resources :sounds,         only: [:new, :create, :show]
   resources :collaborations, only: [:create]
   resources :cratings,       only: [:create]
+
+  resources :sounds, only: [:new, :create, :show] do
+    member do
+      get :download
+    end
+  end
 end
