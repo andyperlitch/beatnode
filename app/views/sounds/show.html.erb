@@ -7,8 +7,8 @@
 
   <% if viewer.crate.include?(@sound) %>
     <div class=download>
-      <%= button_to 'Download',
-        download_sound_path(@sound.id), class: 'pure-button' %>
+      <%= button_to 'Download', download_sound_path(@sound.id),
+        class: 'pure-button', method: :get %>
     </div>
   <% else %>
     <%= render partial: 'cratings/button', locals: {sound: @sound} %>
