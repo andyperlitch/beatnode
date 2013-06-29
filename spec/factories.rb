@@ -18,7 +18,8 @@ FactoryGirl.define do
   factory :upload do
     user  factory: :user
     sound factory: :sound
-    sha1 { generate(:sha1) }
+    sha1         { generate(:sha1) }
+    content_type { 'audio/mpeg' }
   end
 
   factory :collaboration do

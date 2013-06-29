@@ -6,9 +6,9 @@ class UploadsController < ApplicationController
   def create
     upload_attrs = params[:upload]
     sound_attrs  = upload_attrs.delete(:sound)
-    file         = upload_attrs.delete(:file).tempfile
+    file         = upload_attrs.delete(:file)
 
-    uploader = SoundUploader.new(file, viewer, upload_attrs, sound_attrs)
+    uploader = SoundUploader.new(file, viewer, sound_attrs)
 
     if uploader.valid?
       uploader.upload!

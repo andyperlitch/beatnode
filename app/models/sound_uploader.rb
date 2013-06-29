@@ -7,10 +7,10 @@ class SoundUploader
 
   validate :valid_sound
 
-  def initialize(file, user, upload_attrs, sound_attrs)
+  def initialize(file, user, sound_attrs)
     @file   = file
     @user   = user
-    @upload = Upload.new(upload_attrs)
+    @upload = Upload.new
     @sound  = Sound.new(sound_attrs)
   end
 
@@ -18,11 +18,12 @@ class SoundUploader
     Upload.db.transaction do
       sound.save
 
-      sha1 = Beatnode::Storage.store!(file)
+      sha1 = Beatnode::Storage.store!(file.tempfile)
 
-      upload.sha1  = sha1
-      upload.sound = sound
-      upload.user  = user
+      upload.sha1         = sha1
+      upload.content_type = file.content_type
+      upload.sound        = sound
+      upload.user         = user
       upload.save
 
       user.crate.add(sound)

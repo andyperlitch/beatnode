@@ -5,6 +5,7 @@ class Upload < Model
   def validate
     super
     validates_presence :sha1
+    validates_presence :content_type
     validates_unique   :sound_id
   end
 

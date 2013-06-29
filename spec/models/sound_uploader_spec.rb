@@ -2,11 +2,10 @@ require 'spec_helper'
 
 describe SoundUploader do
   let(:user)         { create(:user) }
-  let(:file)         { generate(:mp3) }
-  let(:upload_attrs) { attributes_for(:upload).except(:sha1) }
+  let(:file)         { generate(:file_upload) }
   let(:sound_attrs)  { attributes_for(:sound) }
 
-  subject { SoundUploader.new(file, user, upload_attrs, sound_attrs) }
+  subject { SoundUploader.new(file, user, sound_attrs) }
 
   describe '#upload!' do
     let(:result) do
@@ -21,7 +20,8 @@ describe SoundUploader do
     end
 
     it 'sets upload attributes' do
-      expect(result.user_id).to be(user.id)
+      expect(result.user_id).to      be(user.id)
+      expect(result.content_type).to eq(file.content_type)
     end
 
     it 'creates a sound' do

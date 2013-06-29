@@ -6,8 +6,9 @@ Sequel.migration do
       foreign_key :sound_id, :sounds, null: false
       foreign_key :user_id,  :users,  null: false
 
-      String   :sha1,       null: false
-      DateTime :created_at, null: false
+      String   :sha1,         null: false
+      String   :content_type, null: false
+      DateTime :created_at,   null: false
       DateTime :updated_at
 
       index :user_id
