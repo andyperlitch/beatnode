@@ -20,12 +20,6 @@ group :test do
   gem 'database_cleaner', '0.9.1'
 end
 
-group :assets do
-  gem 'uglifier',     '2.1.1'
-  gem 'jquery-rails', '3.0.1'
-  gem 'turbolinks',   '1.2.0'
-end
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

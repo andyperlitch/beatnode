@@ -4,9 +4,6 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'sprockets/railtie'
 
-require 'jquery-rails'
-require 'turbolinks'
-
 module Beatnode
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -21,6 +18,10 @@ module Beatnode
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Don't use assets pipeline
+    config.assets.enabled  = false
+
+    # Add lib to autoload paths
     config.autoload_paths += %W(#{config.root}/lib)
   end
 end
