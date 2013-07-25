@@ -1,4 +1,6 @@
 shared_context 'with a signed in user', signed_in: true do
+  include_context 'requesting json'
+
   let(:viewer) { create(:user) }
   let(:back)   { root_path }
 
