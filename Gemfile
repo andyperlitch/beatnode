@@ -2,12 +2,11 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
-
+gem 'rails',               '4.0.0'
 gem 'pg',                  '0.15.1'
 gem 'sequel',              '3.46.0'
 gem 'omniauth-soundcloud', '1.0.1'
+gem 'oj',                  '2.1.4'
 
 group :development do
   gem 'pry', '0.9.12.1'
