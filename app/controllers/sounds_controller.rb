@@ -1,11 +1,7 @@
 class SoundsController < ApplicationController
   def show
-    @sound  = Sound[params[:id]]
-    @upload = @sound.upload
-  end
-
-  def new
-    @sound = Sound.new
+    sound = Sound[params[:id]]
+    render json: json(sound)
   end
 
   def create
@@ -13,13 +9,14 @@ class SoundsController < ApplicationController
     file        = sound_attrs.delete(:file)
 
     uploader = SoundUploader.new(file, viewer, sound_attrs)
+    sound    = uploader.sound
 
     if uploader.valid?
       uploader.upload!
-      redirect_to uploads_path
+      render json: json(sound), status: 201
     else
       @sound = uploader.sound
-      render :new
+      head 400
     end
   end
 
@@ -29,5 +26,11 @@ class SoundsController < ApplicationController
     file   = upload.file
 
     send_data file, filename: sound.title, type: upload.content_type
+  end
+
+  private
+
+  def json(sound)
+    SoundPresenter.new(sound).json
   end
 end

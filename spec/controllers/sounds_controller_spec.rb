@@ -4,21 +4,18 @@ describe SoundsController, :signed_in do
   describe '#show' do
     let(:sound) { create(:sound) }
 
-    it 'assigns @sound' do
+    it 'provides sound data' do
       get :show, id: sound.id
-      expect(assigns[:sound]).to eq(sound)
+      expect(json_response['title']).to eq(sound.title)
     end
 
-    it 'assigns @upload' do
-      get :show, id: sound.id
-      expect(assigns[:upload]).to eq(sound.upload)
-    end
-  end
+    it 'provides uploader data' do
+      upload = create(:upload)
+      user   = upload.user
+      sound  = upload.sound
 
-  describe '#new' do
-    it 'assigns a new sound' do
-      get :new
-      expect(assigns[:sound]).to be_a(Sound)
+      get :show, id: sound.id
+      expect(json_response['uploader']).to eq(user.id)
     end
   end
 
@@ -42,9 +39,15 @@ describe SoundsController, :signed_in do
       end.to change(Upload, :count).by(1)
     end
 
-    it 'redirects to the uploads page' do
+    it 'responds 201 created' do
       post :create, params
-      expect(response).to redirect_to(uploads_path)
+      expect(response.status).to be(201)
+    end
+
+    it 'responds 400 with invalid parameters' do
+      params[:sound].delete(:title)
+      post :create, params
+      expect(response.status).to be(400)
     end
   end
 end
