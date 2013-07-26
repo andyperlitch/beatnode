@@ -37,15 +37,9 @@ describe SessionsController do
       }.to change { viewer }.from(nil).to(user)
     end
 
-    it 'redirects to the home page' do
+    it 'responds 201 created' do
       post :create, provider: 'soundcloud'
-      response.should redirect_to(root_path)
-    end
-
-    it 'redirects back' do
-      request.env['HTTP_REFERER'] = '/a/path'
-      post :create, provider: 'soundcloud'
-      response.should redirect_to('/a/path')
+      expect(response.status).to be(201)
     end
   end
 
@@ -56,9 +50,9 @@ describe SessionsController do
       }.to change { session[:user_id] }.from(viewer.id).to(nil)
     end
 
-    it 'redirects to the sign_in page' do
+    it 'responds 204 no content' do
       delete :destroy
-      expect(response).to redirect_to(sign_in_path)
+      expect(response.status).to be(204)
     end
   end
 end

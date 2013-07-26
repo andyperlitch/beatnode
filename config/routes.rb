@@ -1,5 +1,5 @@
 Beatnode::Application.routes.draw do
-  root to: 'sounds#new'
+  root to: 'sessions#new'
 
   get    '/sign_in',                 to: 'sessions#new'
   delete '/sign_out',                to: 'sessions#destroy'
@@ -9,7 +9,7 @@ Beatnode::Application.routes.draw do
   resources :collaborations, only: [:create]
   resources :cratings,       only: [:create]
 
-  resources :sounds, only: [:new, :create, :show] do
+  resources :sounds, only: [:create, :show] do
     member do
       get :download
     end

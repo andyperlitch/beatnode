@@ -7,13 +7,12 @@ class SessionsController < ApplicationController
   def create
     user = User.find_or_create_from_auth(auth)
     sign_in!(user)
-
-    redirect_to referrer || root_path
+    head 201
   end
 
   def destroy
     sign_out!
-    redirect_to sign_in_path
+    head 204
   end
 
   private

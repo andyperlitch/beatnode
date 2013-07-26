@@ -16,6 +16,6 @@ module SessionsHelper
   end
 
   def require_signed_in
-    redirect_to(sign_in_path) unless signed_in?
+    head 401 unless signed_in?
   end
 end

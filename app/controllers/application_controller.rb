@@ -10,5 +10,6 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include PresentersHelper
 
+  layout false
   before_filter :require_signed_in
 end
