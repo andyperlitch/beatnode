@@ -1,12 +1,14 @@
 #!/bin/sh
 f=./tmp/pids/server.pid
-[[ -f $f ]] && _pid=$(cat ./tmp/pids/server.pid 2>&1 /dev/null)
+if [ -f "$f" ]; then
+  _pid=$(cat ./tmp/pids/server.pid 2>&1 /dev/null)
+fi
 
-if [ $_pid ]; then
+if [ -z "$_pid" ]; then
+  echo "No server running."
+  exit 1
+else
   echo "Shutting down..."
   kill $_pid
   exit 0
-else
-  echo "No server running."
-  exit 1
 fi

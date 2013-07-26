@@ -1,13 +1,15 @@
 development:
   adapter: postgres
   database: beatnode_development
+  host: localhost
   pool: 5
-  username: beatnode
-  password:
+  username: postgres
+  password: postgres
 
 test:
   adapter: postgres
   database: beatnode_test
+  host: localhost
   pool: 5
   username: postgres
-  password:
+  password: postgres

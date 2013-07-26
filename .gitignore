@@ -17,3 +17,5 @@
 
 # Ignore uploads directory
 /public/uploads
+
+/.vagrant
