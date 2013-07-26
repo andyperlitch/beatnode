@@ -1,7 +1,8 @@
 class CollaborationsController < ApplicationController
   def create
     subject = User[params[:collaboration][:subject_id]]
-    Collaboration.create_between(viewer, subject)
-    redirect_to :back
+    collab  = Collaboration.create_between(viewer, subject)
+
+    render json: json(collab), status: 201
   end
 end

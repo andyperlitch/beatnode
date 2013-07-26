@@ -1,0 +1,2 @@
+class CollaborationPresenter < Presenter
+end
