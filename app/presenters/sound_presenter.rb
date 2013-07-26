@@ -1,13 +1,11 @@
-SoundPresenter = Struct.new(:sound) do
+class SoundPresenter < Presenter
   def json
-    {
-      id:       sound.id,
-      title:    sound.title,
-      uploader: uploader_id
-    }
+    super.merge(uploader: uploader_id)
   end
 
+  private
+
   def uploader_id
-    sound.uploader.try(:id)
+    object.uploader.try(:id)
   end
 end

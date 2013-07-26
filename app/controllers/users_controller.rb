@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
   def show
-    if @user = User[params[:id]]
-      @uploaded_sounds = @user.uploaded_sounds
-    else
-      head 404
-    end
+    user = User[params[:id]]
+    render json: json(user)
+  end
+
+  private
+
+  def json(user)
+    UserPresenter.new(user).json
   end
 end

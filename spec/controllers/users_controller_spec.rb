@@ -4,20 +4,15 @@ describe UsersController, :signed_in do
   let(:user) { create(:user) }
 
   describe '#show' do
-    it 'assigns @user' do
+    it 'provides user data' do
       get :show, id: user.id
-      expect(assigns[:user]).to eq(user)
+      expect(json_response['username']).to eq(user.username)
     end
 
-    it 'assigns @uploaded_sounds' do
-      sound = create(:upload, user: user).sound
+    it 'provides upload data' do
+      upload = create(:upload, user: user)
       get :show, id: user.id
-      expect(assigns[:uploaded_sounds]).to include(sound)
-    end
-
-    it 'returns 404 if the user isnt found' do
-      get :show, id: 123
-      expect(response.status).to be(404)
+      expect(json_response['uploaded_sounds']).to eq([upload.sound_id])
     end
   end
 end
