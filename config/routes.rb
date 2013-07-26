@@ -1,7 +1,5 @@
 Beatnode::Application.routes.draw do
-  root            to: 'pages#home'
-  get '/crate',   to: 'pages#crate'
-  get '/uploads', to: 'pages#uploads'
+  root to: 'sounds#new'
 
   get    '/sign_in',                 to: 'sessions#new'
   delete '/sign_out',                to: 'sessions#destroy'
