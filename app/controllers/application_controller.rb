@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
 
   include SessionsHelper
+  include PresentersHelper
 
   before_filter :require_signed_in
 end

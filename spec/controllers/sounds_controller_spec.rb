@@ -1,21 +1,12 @@
 require 'spec_helper'
 
 describe SoundsController, :signed_in do
+  let(:sound) { create(:sound) }
+
   describe '#show' do
-    let(:sound) { create(:sound) }
-
-    it 'provides sound data' do
+    it 'is successful' do
       get :show, id: sound.id
-      expect(json_response['title']).to eq(sound.title)
-    end
-
-    it 'provides uploader data' do
-      upload = create(:upload)
-      user   = upload.user
-      sound  = upload.sound
-
-      get :show, id: sound.id
-      expect(json_response['uploader']).to eq(user.id)
+      expect(response).to be_success
     end
   end
 

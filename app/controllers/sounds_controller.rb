@@ -15,7 +15,6 @@ class SoundsController < ApplicationController
       uploader.upload!
       render json: json(sound), status: 201
     else
-      @sound = uploader.sound
       head 400
     end
   end
@@ -26,11 +25,5 @@ class SoundsController < ApplicationController
     file   = upload.file
 
     send_data file, filename: sound.title, type: upload.content_type
-  end
-
-  private
-
-  def json(sound)
-    SoundPresenter.new(sound).json
   end
 end
