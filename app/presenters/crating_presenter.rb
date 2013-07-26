@@ -1,0 +1,2 @@
+class CratingPresenter < Presenter
+end

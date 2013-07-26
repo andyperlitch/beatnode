@@ -2,8 +2,14 @@ require 'spec_helper'
 
 describe CratingsController, :signed_in do
   describe '#create' do
-    let(:sound)   { create(:sound) }
+    let(:sound)  { create(:sound) }
     let(:params) { {crating: {sound_id: sound.id}} }
+
+    it 'creates a Crating' do
+      expect do
+        post :create, params
+      end.to change(Crating, :count).by(1)
+    end
 
     it 'adds a sound to the crate' do
       expect do
@@ -11,9 +17,9 @@ describe CratingsController, :signed_in do
       end.to change { viewer.reload.crate.count }.by(1)
     end
 
-    it 'redirects back' do
+    it 'responds 201 created' do
       post :create, params
-      expect(response).to redirect_to(back)
+      expect(response.status).to be(201)
     end
   end
 end
