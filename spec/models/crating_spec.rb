@@ -17,10 +17,10 @@ describe Crating do
     it 'prevents duplicates' do
       crating = create(:crating)
 
-      expect do
+      expect {
         Crating.create(:crating, owner: crating.owner,
                                  sound:  crating.sound)
-      end.to raise_error
+      }.to raise_error
     end
   end
 end

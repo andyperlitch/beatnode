@@ -32,9 +32,9 @@ describe SessionsController do
     end
 
     it 'sets viewer' do
-      expect do
+      expect {
         post :create, provider: 'soundcloud'
-      end.to change { viewer }.from(nil).to(user)
+      }.to change { viewer }.from(nil).to(user)
     end
 
     it 'redirects to the home page' do
@@ -51,9 +51,9 @@ describe SessionsController do
 
   describe '#destroy', :signed_in do
     it 'signs out the user' do
-      expect do
+      expect {
         delete :destroy
-      end.to change { session[:user_id] }.from(viewer.id).to(nil)
+      }.to change { session[:user_id] }.from(viewer.id).to(nil)
     end
 
     it 'redirects to the sign_in page' do

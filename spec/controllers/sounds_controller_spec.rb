@@ -19,15 +19,15 @@ describe SoundsController, :signed_in do
     end
 
     it 'creates a Sound' do
-      expect do
+      expect {
         post :create, params
-      end.to change(Sound, :count).by(1)
+      }.to change(Sound, :count).by(1)
     end
 
     it 'creates an Upload' do
-      expect do
+      expect {
         post :create, params
-      end.to change(Upload, :count).by(1)
+      }.to change(Upload, :count).by(1)
     end
 
     it 'responds 201 created' do

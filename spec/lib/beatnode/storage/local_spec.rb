@@ -17,9 +17,9 @@ module Beatnode
 
       describe '#store!' do
         it 'saves the file to disk' do
-          expect do
+          expect {
             subject.store!(mp3)
-          end.to change { File.exists?(dest) }.from(false).to(true)
+          }.to change { File.exists?(dest) }.from(false).to(true)
         end
 
         it 'returns the sha1 used to calculate the path' do

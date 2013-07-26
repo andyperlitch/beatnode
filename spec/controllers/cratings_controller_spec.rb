@@ -6,15 +6,15 @@ describe CratingsController, :signed_in do
     let(:params) { {crating: {sound_id: sound.id}} }
 
     it 'creates a Crating' do
-      expect do
+      expect {
         post :create, params
-      end.to change(Crating, :count).by(1)
+      }.to change(Crating, :count).by(1)
     end
 
     it 'adds a sound to the crate' do
-      expect do
+      expect {
         post :create, params
-      end.to change { viewer.reload.crate.count }.by(1)
+      }.to change { viewer.reload.crate.count }.by(1)
     end
 
     it 'responds 201 created' do

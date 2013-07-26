@@ -61,9 +61,9 @@ describe Crate do
     it 'removes the sound from the crate' do
       sound = crating.sound
 
-      expect do
+      expect {
         subject.remove(sound)
-      end.to change { subject.include?(sound) }.from(true).to(false)
+      }.to change { subject.include?(sound) }.from(true).to(false)
     end
   end
 end

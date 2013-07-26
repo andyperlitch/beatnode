@@ -23,9 +23,9 @@ describe User do
     end
 
     it 'creates a user' do
-      expect do
+      expect {
         User.find_or_create_from_auth(auth)
-      end.to change(User, :count).by(1)
+      }.to change(User, :count).by(1)
     end
 
     it 'sets the correct attributes' do

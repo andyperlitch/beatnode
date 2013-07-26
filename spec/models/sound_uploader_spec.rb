@@ -14,9 +14,9 @@ describe SoundUploader do
     end
 
     it 'creates an Upload' do
-      expect do
+      expect {
         subject.upload!
-      end.to change(Upload, :count).by(1)
+      }.to change(Upload, :count).by(1)
     end
 
     it 'sets upload attributes' do
@@ -25,9 +25,9 @@ describe SoundUploader do
     end
 
     it 'creates a sound' do
-      expect do
+      expect {
         subject.upload!
-      end.to change(Sound, :count).by(1)
+      }.to change(Sound, :count).by(1)
     end
 
     it 'sets sound attributes' do
@@ -37,9 +37,9 @@ describe SoundUploader do
     end
 
     it 'adds the sound to the users crate' do
-      expect do
+      expect {
         subject.upload!
-      end.to change { user.crate.count }.by(1)
+      }.to change { user.crate.count }.by(1)
     end
   end
 

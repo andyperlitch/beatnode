@@ -6,9 +6,9 @@ describe CollaborationsController, :signed_in do
     let(:params)   { {collaboration: {subject_id: followed.id}} }
 
     it 'creates a Collaboration' do
-      expect do
+      expect {
         post :create, params
-      end.to change(Collaboration, :count).by(1)
+      }.to change(Collaboration, :count).by(1)
     end
 
     it 'prevents mass assignment of source_id' do
