@@ -9,11 +9,7 @@ class Upload < Model
     validates_unique   :sound_id
   end
 
-  def src
-    Beatnode::Storage.src_for(sha1)
-  end
-
   def file
-    Beatnode::Storage.fetch(sha1)
+    Beatnode.storage.fetch(sha1)
   end
 end
