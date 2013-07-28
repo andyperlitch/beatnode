@@ -2,12 +2,12 @@ development:
   adapter: postgres
   database: beatnode_development
   pool: 5
-  username: beatnode
-  password:
+  username: postgres
+  password: postgres
 
 test:
   adapter: postgres
   database: beatnode_test
   pool: 5
   username: postgres
-  password:
+  password: postgres
