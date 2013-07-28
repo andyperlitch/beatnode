@@ -8,6 +8,7 @@ gem 'sequel',              '3.46.0'
 gem 'omniauth-soundcloud', '1.0.1'
 gem 'oj',                  '2.1.4'
 gem 'fog',                 '1.14.0'
+gem 'thin',                '1.5.1'
 
 group :development do
   gem 'pry', '0.9.12.1'
