@@ -16,7 +16,7 @@ class SoundUploader
     Upload.db.transaction do
       sound.save
 
-      sha1 = Beatnode::Storage.store!(file.tempfile)
+      sha1 = Beatnode.storage.store!(file.tempfile)
 
       upload.sha1         = sha1
       upload.content_type = file.content_type

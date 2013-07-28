@@ -11,6 +11,8 @@ FactoryGirl.find_definitions
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each &method(:require)
 
+Fog.mock!
+
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include SessionsHelper

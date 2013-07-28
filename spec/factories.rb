@@ -59,4 +59,10 @@ FactoryGirl.define do
       end
     end
   end
+
+  sequence :aws do
+    Fog::Storage.new(provider: 'AWS',
+                     aws_access_key_id: 'aws_access_key_id',
+                     aws_secret_access_key: 'aws_secret_access_key')
+  end
 end

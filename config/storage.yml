@@ -1,0 +1,5 @@
+development: &local
+  provider: Local
+  local_root: <%= Rails.root.join('uploads') %>
+
+test: *local

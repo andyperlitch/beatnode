@@ -1,62 +1,30 @@
-require 'digest'
-
 module Beatnode
-  class UnknownStrategy < ArgumentError; end
+  Storage = Struct.new(:connection) do
+    def store!(file)
+      sha1       = Digest::SHA1.file(file).hexdigest
+      dir, fname = split_sha1(sha1)
 
-  module Storage
-    class << self
-      attr_reader :strategy
-
-      delegate :store!, :fetch, :clear!, :src_for, to: :strategy
-
-      def use(strategy, options={})
-        case strategy.to_sym
-        when :local
-          public_dir = options.fetch(:public_dir, Rails.public_path)
-          store_dir  = options.fetch(:store_dir)
-          @strategy  = Local.new(public_dir, store_dir)
-        else
-          raise UnknownStrategy, strategy.inspect
-        end
-      end
-
-      def file_to_path(file)
-        sha1_to_path(file_to_sha1(file))
-      end
-
-      def sha1_to_path(sha1)
-        sha1.dup.insert(2, '/')
-      end
-
-      def file_to_sha1(file)
-        Digest::SHA1.file(file).hexdigest
-      end
+      directory = find_or_create(dir)
+      directory.files.create(key: fname, body: file)
+      sha1
     end
 
-    class Strategy
-      def store!(_)
-        raise 'Implement #store! in subclass'
-      end
+    def fetch(sha1)
+      dir, fname = split_sha1(sha1)
 
-      def fetch(_)
-        raise 'Implement #fetch in subclass'
-      end
+      directory = find_or_create(dir)
+      directory.files.get(fname)
+    end
 
-      protected
+    private
 
-      def file_to_path(file)
-        Storage.file_to_path(file)
-      end
+    def split_sha1(sha1)
+      [sha1[0..1]] << sha1[2..-1]
+    end
 
-      def sha1_to_path(sha1)
-        Storage.sha1_to_path(sha1)
-      end
-
-      def file_to_sha1(file)
-        Storage.file_to_sha1(file)
-      end
+    def find_or_create(dir)
+      connection.directories.get(dir) ||
+        connection.directories.create(key: dir)
     end
   end
 end
-
-Dir[File.dirname(__FILE__) + '/storage/*.rb'].each &method(:require)
