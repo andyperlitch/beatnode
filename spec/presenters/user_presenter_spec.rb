@@ -12,13 +12,13 @@ describe UserPresenter do
 
     it 'includes uploaded sounds' do
       upload = create(:upload, user: user)
-      expect(subject.json[:uploaded_sounds]).to eq([upload.sound_id])
+      expect(subject.json[:uploaded_sound_ids]).to eq([upload.sound_id])
     end
 
     it 'includes crated sounds' do
       sound = create(:sound)
       user.crate.add(sound)
-      expect(subject.json[:crated_sounds]).to eq([sound.id])
+      expect(subject.json[:crated_sound_ids]).to eq([sound.id])
     end
   end
 end

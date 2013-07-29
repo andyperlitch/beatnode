@@ -1,7 +1,7 @@
 class UserPresenter < Presenter
   def json
-    super.merge(uploaded_sounds: uploaded_sound_ids,
-                crated_sounds:   crated_sound_ids)
+    super.merge(uploaded_sound_ids: uploaded_sound_ids,
+                crated_sound_ids:   crated_sound_ids)
   end
 
   private

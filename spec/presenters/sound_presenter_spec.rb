@@ -12,7 +12,7 @@ describe SoundPresenter do
 
     it 'includes the uploader id' do
       upload = create(:upload, sound: sound)
-      expect(subject.json[:uploader]).to be(upload.user_id)
+      expect(subject.json[:uploader_id]).to be(upload.user_id)
     end
   end
 end

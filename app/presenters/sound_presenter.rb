@@ -1,6 +1,6 @@
 class SoundPresenter < Presenter
   def json
-    super.merge(uploader: uploader_id)
+    super.merge(uploader_id: uploader_id)
   end
 
   private
