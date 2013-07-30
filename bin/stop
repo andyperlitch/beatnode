@@ -1,6 +1,10 @@
 #!/bin/sh
-f=./tmp/pids/server.pid
-[[ -f $f ]] && _pid=$(cat ./tmp/pids/server.pid 2>&1 /dev/null)
+
+pidfile=./tmp/pids/server.pid
+
+if [ -f $pidfile ]; then
+  _pid=$(cat $pidfile 2>&1 /dev/null)
+fi
 
 if [ $_pid ]; then
   echo "Shutting down..."
