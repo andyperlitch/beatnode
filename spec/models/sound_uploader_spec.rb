@@ -50,7 +50,7 @@ describe SoundUploader do
 
     it 'fails with an invalid sound' do
       sound_attrs.delete(:title)
-      expect(subject).not_to be_valid
+      expect(subject).to_not be_valid
     end
   end
 end
