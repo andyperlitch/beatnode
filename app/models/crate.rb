@@ -1,10 +1,8 @@
 class Crate < Struct.new(:user)
   include Enumerable
 
-  def each
-    dataset.all.each do |member|
-      yield member
-    end
+  def each(&block)
+    dataset.each { |sound| yield sound }
   end
 
   def empty?
@@ -34,6 +32,4 @@ class Crate < Struct.new(:user)
       join(:cratings, sound_id: :id).
       where(owner_id: user.id)
   end
-
-  class DuplicateEntry < ArgumentError; end
 end
