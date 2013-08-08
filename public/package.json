@@ -1,0 +1,20 @@
+{
+  "name": "beatnode_front",
+  "version": "0.0.0",
+  "description": "front-end for beatnode.me",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "devDependencies": {
+    "browserify": "~2.26.0",
+    "beefy": "~0.4.1"
+  },
+  "dependencies": {
+    "backbone": "~1.0.0",
+    "underscore": "~1.5.1"
+  }
+}

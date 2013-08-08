@@ -17,3 +17,6 @@
 
 # Ignore uploads directory
 /uploads
+
+# Ignore node_modules (for front-end dev work)
+node_modules
