@@ -12,8 +12,7 @@ module Beatnode
     def fetch(sha1)
       dir, fname = split_sha1(sha1)
 
-      directory = find_or_create(dir)
-      directory.files.get(fname)
+      directory(dir).files.get(fname)
     end
 
     private
@@ -22,9 +21,16 @@ module Beatnode
       [sha1[0..1]] << sha1[2..-1]
     end
 
+    def directory(dir)
+      connection.directories.get(dir)
+    end
+
+    def create_directory(dir)
+      connection.directories.create(key: dir)
+    end
+
     def find_or_create(dir)
-      connection.directories.get(dir) ||
-        connection.directories.create(key: dir)
+      directory(dir) || create_directory(dir)
     end
   end
 end
