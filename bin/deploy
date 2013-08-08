@@ -1,0 +1,1 @@
+ssh app@beatnode.me 'cd beatnode && git pull origin master'
