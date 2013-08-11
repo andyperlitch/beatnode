@@ -1,9 +1,7 @@
 class Crate < Struct.new(:user)
   include Enumerable
 
-  def each(&block)
-    dataset.each { |sound| yield sound }
-  end
+  delegate :each, to: :dataset
 
   def empty?
     dataset.empty?
