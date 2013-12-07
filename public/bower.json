@@ -9,6 +9,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "git://github.com/twbs/bootstrap.git#~3.0.0-rc1"
+    "bootstrap": "~3.0.3"
   }
 }
